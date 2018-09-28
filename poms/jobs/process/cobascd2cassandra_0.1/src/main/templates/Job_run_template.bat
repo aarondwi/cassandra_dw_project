@@ -1,0 +1,3 @@
+%~d0
+cd %~dp0
+java -Xms256M -Xmx1024M -Dfile.encoding=UTF-8 -cp .;../lib/routines.jar;../lib/cassandra-driver-core-3.0.0-shaded.jar;../lib/dom4j-1.6.1.jar;../lib/log4j-1.2.16.jar;../lib/metrics-core-3.1.2.jar;../lib/slf4j-api-1.7.7.jar;../lib/talend-cassandra-1.2.jar;../lib/talend_file_enhanced_20070724.jar;../lib/talendcsv.jar;cobascd2cassandra_0_1.jar; skripsi.cobascd2cassandra_0_1.cobascd2cassandra  %* 
