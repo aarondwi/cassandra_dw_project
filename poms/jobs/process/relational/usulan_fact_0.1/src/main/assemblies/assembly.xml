@@ -184,6 +184,8 @@
 				<include>org.talend.libraries:log4j-1.2.15</include>
 				<include>org.talend.libraries:log4j-1.2.16</include>
 				<include>org.talend.libraries:postgresql-9.4-1201.jdbc41</include>
+				<include>org.talend.libraries:talend_file_enhanced_20070724</include>
+				<include>org.talend.libraries:talendcsv</include>
 				<include>org.talend.libraries:trove</include>
 				<include>org.example.skripsi.code:routines</include>
 			</includes>

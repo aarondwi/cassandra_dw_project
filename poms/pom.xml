@@ -31,10 +31,12 @@
     <module>jobs/process/cobafixedinput_0.1</module>
     <module>jobs/process/relational/scd_buku_0.1</module>
     <module>jobs/process/wideColumn/cf_usulan_0.1</module>
-    <module>jobs/process/wideColumn/cf_transaksi_non_standard_0.1</module>
     <module>jobs/process/wideColumn/scd_buku_cassandra_0.1</module>
     <module>jobs/process/wideColumn/cf_transaksi_standard_0.1</module>
     <module>jobs/process/wideColumn/cf_buku_0.1</module>
+    <module>jobs/process/wideColumn/cf_transaksi_jurusan_kategori_0.1</module>
+    <module>jobs/process/relational/copy_of_scd_buku_0.1</module>
+    <module>jobs/process/relational/scd_buku_relational_0.1</module>
   </modules>
   <properties>
     <talend.project.name>SKRIPSI</talend.project.name>
