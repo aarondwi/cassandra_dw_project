@@ -961,8 +961,8 @@ public class transaksi_fact implements TalendJob {
 
 				new BytesLimit65535_tDBConnection_1().limitLog4jByte();
 
-				String url_tDBConnection_1 = "jdbc:postgresql://" + "" + ":"
-						+ "5432" + "/" + "skripsi";
+				String url_tDBConnection_1 = "jdbc:postgresql://"
+						+ "192.168.38.9" + ":" + "5432" + "/" + "skripsi";
 
 				String dbUser_tDBConnection_1 = "skripsiuser";
 
@@ -1162,6 +1162,12 @@ public class transaksi_fact implements TalendJob {
 			return this.date_key_2;
 		}
 
+		public String kode_anggota;
+
+		public String getKode_anggota() {
+			return this.kode_anggota;
+		}
+
 		private Integer readInteger(ObjectInputStream dis) throws IOException {
 			Integer intReturn;
 			int length = 0;
@@ -1181,6 +1187,39 @@ public class transaksi_fact implements TalendJob {
 			} else {
 				dos.writeByte(0);
 				dos.writeInt(intNum);
+			}
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_SKRIPSI_transaksi_fact.length) {
+					if (length < 1024
+							&& commonByteArray_SKRIPSI_transaksi_fact.length == 0) {
+						commonByteArray_SKRIPSI_transaksi_fact = new byte[1024];
+					} else {
+						commonByteArray_SKRIPSI_transaksi_fact = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_SKRIPSI_transaksi_fact, 0, length);
+				strReturn = new String(commonByteArray_SKRIPSI_transaksi_fact,
+						0, length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
 			}
 		}
 
@@ -1222,6 +1261,8 @@ public class transaksi_fact implements TalendJob {
 					this.jurusan_key = dis.readInt();
 
 					this.date_key_2 = readInteger(dis);
+
+					this.kode_anggota = readString(dis);
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
@@ -1282,6 +1323,10 @@ public class transaksi_fact implements TalendJob {
 
 				writeInteger(this.date_key_2, dos);
 
+				// String
+
+				writeString(this.kode_anggota, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -1301,6 +1346,7 @@ public class transaksi_fact implements TalendJob {
 			sb.append(",buku_dim_key=" + String.valueOf(buku_dim_key));
 			sb.append(",jurusan_key=" + String.valueOf(jurusan_key));
 			sb.append(",date_key_2=" + String.valueOf(date_key_2));
+			sb.append(",kode_anggota=" + kode_anggota);
 			sb.append("]");
 
 			return sb.toString();
@@ -1397,6 +1443,12 @@ public class transaksi_fact implements TalendJob {
 
 		public Double getTerbayar() {
 			return this.Terbayar;
+		}
+
+		public String kode_anggota;
+
+		public String getKode_anggota() {
+			return this.kode_anggota;
 		}
 
 		private Integer readInteger(ObjectInputStream dis) throws IOException {
@@ -1518,6 +1570,8 @@ public class transaksi_fact implements TalendJob {
 						this.Terbayar = dis.readDouble();
 					}
 
+					this.kode_anggota = readString(dis);
+
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 
@@ -1581,6 +1635,10 @@ public class transaksi_fact implements TalendJob {
 					dos.writeDouble(this.Terbayar);
 				}
 
+				// String
+
+				writeString(this.kode_anggota, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -1601,6 +1659,7 @@ public class transaksi_fact implements TalendJob {
 			sb.append(",fckd_operator=" + fckd_operator);
 			sb.append(",Denda=" + String.valueOf(Denda));
 			sb.append(",Terbayar=" + String.valueOf(Terbayar));
+			sb.append(",kode_anggota=" + kode_anggota);
 			sb.append("]");
 
 			return sb.toString();
@@ -2247,7 +2306,7 @@ public class transaksi_fact implements TalendJob {
 				int count_tDBOutput_1 = 0;
 				String insert_tDBOutput_1 = "INSERT INTO \""
 						+ tableName_tDBOutput_1
-						+ "\" (\"id_transaksi\",\"denda\",\"terbayar\",\"tgl_pinjam_key\",\"tgl_batas_key\",\"buku_dim_key\",\"jurusan_key\",\"tgl_kembali_key\") VALUES (?,?,?,?,?,?,?,?)";
+						+ "\" (\"id_transaksi\",\"denda\",\"terbayar\",\"tgl_pinjam_key\",\"tgl_batas_key\",\"buku_dim_key\",\"jurusan_key\",\"tgl_kembali_key\",\"kode_anggota\") VALUES (?,?,?,?,?,?,?,?,?)";
 
 				java.sql.PreparedStatement pstmt_tDBOutput_1 = conn_tDBOutput_1
 						.prepareStatement(insert_tDBOutput_1);
@@ -2539,36 +2598,7 @@ public class transaksi_fact implements TalendJob {
 								.computeDate(row1.fdtgl_kembali);
 						row2.fckd_induk = data_checker
 								.computeJurusan(row1.fckd_induk);
-
-						/*
-						 * SimpleDateFormat dt=new
-						 * SimpleDateFormat("MM/dd/yyyy"); //dt error here means
-						 * wrong input data, e.g. 15:37.5 or is null try{
-						 * row2.fdtgl_pinjam
-						 * =dt.parse(row1.fdtgl_pinjam.split(" ")[0]); }
-						 * catch(Exception
-						 * e){row2.fdtgl_pinjam=dt.parse("01/01/0001");}
-						 * 
-						 * try{
-						 * row2.fdtgl_batas=dt.parse(row1.fdtgl_batas.split(
-						 * " ")[0]); } catch(Exception
-						 * e){row2.fdtgl_batas=dt.parse("01/01/0001");}
-						 * 
-						 * try{
-						 * row2.fdtgl_kembali=dt.parse(row1.fdtgl_kembali.split
-						 * (" ")[0]); } catch(Exception
-						 * e){row2.fdtgl_kembali=dt.parse("01/01/0001");}
-						 */
-
-						// number only means a student
-						/*
-						 * if(row1.fckd_induk.matches("[0-9]+") &&
-						 * row1.fckd_induk.length()==8){
-						 * row2.fckd_induk=Integer.
-						 * valueOf(row1.fckd_induk.substring(0,3)); }
-						 * else{//means an employee row2.fckd_induk=0; }
-						 */
-
+						row2.kode_anggota = row1.fckd_induk;
 						nb_line_tJavaRow_1++;
 
 						tos_count_tJavaRow_1++;
@@ -2849,6 +2879,7 @@ public class transaksi_fact implements TalendJob {
 							load_tmp.buku_dim_key = row5.buku_dim_key;
 							load_tmp.jurusan_key = row7.jurusan_key;
 							load_tmp.date_key_2 = row6.date_key;
+							load_tmp.kode_anggota = row2.kode_anggota;
 							load = load_tmp;
 							// ###############################
 
@@ -2928,6 +2959,14 @@ public class transaksi_fact implements TalendJob {
 										java.sql.Types.INTEGER);
 							} else {
 								pstmt_tDBOutput_1.setInt(8, load.date_key_2);
+							}
+
+							if (load.kode_anggota == null) {
+								pstmt_tDBOutput_1.setNull(9,
+										java.sql.Types.VARCHAR);
+							} else {
+								pstmt_tDBOutput_1.setString(9,
+										load.kode_anggota);
 							}
 
 							pstmt_tDBOutput_1.addBatch();
@@ -6517,6 +6556,6 @@ public class transaksi_fact implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 174011 characters generated by Talend Open Studio for Big Data on the October
- * 8, 2018 10:08:14 AM ICT
+ * 175137 characters generated by Talend Open Studio for Big Data on the October
+ * 15, 2018 6:26:13 PM ICT
  ************************************************************************************************/

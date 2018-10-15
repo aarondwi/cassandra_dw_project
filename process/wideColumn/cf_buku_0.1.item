@@ -199,7 +199,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row2.k999a=row1.k999a;&#xA;row2.knokat=row1.knokat;&#xA;row2.fnkd_lokasi=row1.fnkd_lokasi;&#xA;&#xA;row2.fckd_jnskol=data_checker.computeKoleksi(row1.fckd_jnskol);&#xA;row2.status=data_checker.computeStatus(row1.status);&#xA;row2.fdtgl_input=data_checker.computeDate(row1.fdtgl_input);&#xA;row2.tgl_dtg=data_checker.computeDate(row1.tgl_dtg);&#xA;&#xA;row2.unique_id=UUID.randomUUID().toString();&#xA;&#xA;/*if(row1.fckd_jnskol!=null){&#xA;&#x9;row2.fckd_jnskol=row1.fckd_jnskol;&#xA;}&#xA;else { row2.fckd_jnskol=&quot;none&quot;; }&#xA;&#xA;try{&#xA;&#x9;row2.status=row1.status.toLowerCase();&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row2.status=&quot;b&quot;;&#xA;}&#xA;&#xA;//error here means wrong input data, e.g. 15:37.5 or is null&#xA;SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;&#xA;try{&#xA;&#x9;row2.fdtgl_input=dt.parse(row1.fdtgl_input.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row2.fdtgl_input=dt.parse(&quot;01/01/0001&quot;);}&#xA;&#xA;try{&#xA;&#x9;row2.tgl_dtg=dt.parse(row1.tgl_dtg.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row2.tgl_dtg=dt.parse(&quot;01/01/0001&quot;);}*/&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row2.k999a=row1.k999a;&#xA;row2.knokat=row1.knokat;&#xA;row2.fnkd_lokasi=row1.fnkd_lokasi;&#xA;&#xA;row2.fckd_jnskol=data_checker.computeKoleksi(row1.fckd_jnskol);&#xA;row2.status=data_checker.computeStatus(row1.status);&#xA;row2.fdtgl_input=data_checker.computeDate(row1.fdtgl_input);&#xA;row2.tgl_dtg=data_checker.computeDate(row1.tgl_dtg);&#xA;&#xA;row2.unique_id=UUID.randomUUID().toString();&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="lowercase status, default nilai koleksi, parse date"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -331,7 +331,7 @@
       <column comment="" key="false" length="2147483647" name="k260b" nullable="true" originalDbColumnName="penerbit" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="load">
         <mapperTableEntries name="kode_buku" expression="row2.k999a " type="id_String" nullable="true"/>
@@ -444,7 +444,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_2" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row3.knokat=row5.knokat;&#xA;row3.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row3.k245a=row5.k245a;&#xA;&#xA;row3.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row3.k099a=data_checker.computeKategori(row5.k099a);&#xA;&#xA;/*try{&#xA;&#x9;row3.fnkd_penerbit=Integer.valueOf(row5.fnkd_penerbit);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row3.fnkd_penerbit=0;&#xA;}&#xA;&#xA;try{&#xA;&#x9;Integer calc=(int)Math.floor(Double.valueOf(row5.k099a));&#xA;&#x9;if(calc>=10){&#xA;&#x9;&#x9;calc=calc-(calc%10);&#xA;&#x9;}&#xA;&#x9;row3.k099a=calc;&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row3.k099a=0;&#xA;}*/&#xA;&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row3.knokat=row5.knokat;&#xA;row3.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row3.k245a=row5.k245a;&#xA;&#xA;row3.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row3.k099a=data_checker.computeKategori(row5.k099a);&#xA;&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="calculate kode kategori, penerbit"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -628,6 +628,7 @@
   </node>
   <node componentName="tCassandraOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tCassandraOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" value="cassandra22_datastax_id" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tCassandraConnection_1"/>
@@ -734,6 +735,7 @@
   </node>
   <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUnite_3" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="combine penerbit data"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tUnite_3">
       <column comment="" defaultValue="" key="false" length="10" name="fnkd_penerbit" nullable="false" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>

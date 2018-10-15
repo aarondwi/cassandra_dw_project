@@ -188,7 +188,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//no modifications &#xA;row4.id_usul=row1.id_usul;&#xA;row4.judul=row1.judul;&#xA;row4.pengarang=row1.pengarang;&#xA;&#xA;row4.jenis_usul=data_checker.computeJenisUsul(row1.jenis_usul);&#xA;row4.kode_status=data_checker.computeKodeStatus(row1.kode_status);&#xA;row4.penerbit=data_checker.computePenerbitStr(row1.penerbit);&#xA;row4.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row4.tgl=data_checker.computeDate(row1.tgl);&#xA;&#xA;row4.unique_id=UUID.randomUUID().toString();&#xA;/*if(row1.jenis_usul!=null){&#xA;&#x9;row4.jenis_usul=row1.jenis_usul;&#xA;}&#xA;else { row4.jenis_usul=&quot;u&quot;; }&#xA;&#xA;if(row1.kode_status!=null){&#xA;&#x9;row4.kode_status=row1.kode_status;&#xA;}&#xA;else { row4.kode_status=1; }//belum disetujui&#xA;&#xA;//null penerbit is unknown&#xA;if(row1.penerbit==null || row1.penerbit.equals(&quot;&quot;)){&#xA;&#x9;row4.penerbit=&quot;unknown&quot;;&#xA;}&#xA;else row4.penerbit=row1.penerbit;&#xA;&#xA;//number only means a student&#xA;if(row1.fckd_induk.matches(&quot;[0-9]+&quot;) &amp;&amp; row1.fckd_induk.length()==8){&#xA;&#x9;row4.fckd_induk=Integer.valueOf(row1.fckd_induk.substring(0,3));&#xA;}&#xA;else{ row4.fckd_induk=0; }//means an employee&#xA;&#xA;//error here means wrong input data, e.g. 15:37.5&#xA;SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;try{&#xA;&#x9;row4.tgl=dt.parse(row1.tgl.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){ row4.tgl=dt.parse(&quot;01/01/0001&quot;); }*/"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//no modifications &#xA;row4.id_usul=row1.id_usul;&#xA;row4.judul=row1.judul;&#xA;row4.pengarang=row1.pengarang;&#xA;&#xA;row4.jenis_usul=data_checker.computeJenisUsul(row1.jenis_usul);&#xA;row4.kode_status=data_checker.computeKodeStatus(row1.kode_status);&#xA;row4.penerbit=data_checker.computePenerbitStr(row1.penerbit);&#xA;row4.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row4.tgl=data_checker.computeDate(row1.tgl);&#xA;&#xA;row4.unique_id=UUID.randomUUID().toString();&#xA;row4.kode_anggota=row1.fckd_induk;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="edit penerbit, fckd_induk, tgl, jenis_usul, status_usul"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -202,6 +202,7 @@
       <column comment="" key="false" length="2147483647" name="jenis_usul" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="kode_status" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="480" posY="320">
@@ -230,9 +231,10 @@
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="jenis_usul" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="status" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="out1">
         <mapperTableEntries name="id_usulan" expression="row4.id_usul " type="id_Integer" nullable="true"/>
@@ -245,6 +247,7 @@
         <mapperTableEntries name="fakultas" expression="row5.fakultas " type="id_String" nullable="true"/>
         <mapperTableEntries name="jenis_usul" expression="row6.jenis_usul " type="id_String" nullable="true"/>
         <mapperTableEntries name="status" expression="row7.status_usul " type="id_String" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" expression="row4.kode_anggota " type="id_String" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row4" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="id_usul" type="id_Integer" nullable="true"/>
@@ -256,6 +259,7 @@
         <mapperTableEntries name="jenis_usul" type="id_String" nullable="true"/>
         <mapperTableEntries name="kode_status" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="unique_id" type="id_String" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" type="id_String" nullable="true"/>
       </inputTables>
       <inputTables sizeState="INTERMEDIATE" name="row5" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="kode_jurusan" expression="row4.fckd_induk " type="id_Integer" operator="="/>
@@ -272,7 +276,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="352">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_1" show="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/Apps Installer/TOS_BD-20180411_1414-V7.0.1/workspace/jurusan.csv&quot;"/>
@@ -334,7 +338,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="416">
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFixedFlowInput_1" show="false"/>
     <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
     <elementParameter field="RADIO" name="USE_SINGLEMODE" value="false"/>
@@ -364,7 +368,7 @@
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="384">
+  <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUnite_1" show="false"/>
     <elementParameter field="TEXT" name="LABEL" value="combine jurusan data"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -376,6 +380,7 @@
   </node>
   <node componentName="tCassandraOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="640" posY="320">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tCassandraOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
     <elementParameter field="MAPPING_TYPE" name="MAPPING" value="cassandra22_datastax_id" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tCassandraConnection_1"/>
@@ -437,9 +442,10 @@
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="jenis_usul" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="status" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="448">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="384" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_2" show="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/Apps Installer/TOS_BD-20180411_1414-V7.0.1/workspace/jenis_usul.csv&quot;"/>
@@ -495,7 +501,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="448">
+  <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_3" show="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
     <elementParameter field="FILE" name="FILENAME" value="&quot;D:/Apps Installer/TOS_BD-20180411_1414-V7.0.1/workspace/status_usul.csv&quot;"/>
@@ -585,6 +591,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="unique_id"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
@@ -592,6 +601,9 @@
   <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_1" target="tCassandraOutput_1">
     <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
       <elementValue elementRef="TRACE_COLUMN" value="unique_id"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>

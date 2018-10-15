@@ -163,7 +163,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="352">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row2.k999a=row1.k999a;&#xA;row2.knokat=row1.knokat;&#xA;row2.fnkd_lokasi=row1.fnkd_lokasi;&#xA;&#xA;//if(row1.fckd_jnskol!=null)row2.fckd_jnskol=row1.fckd_jnskol;&#xA;//else row2.fckd_jnskol=&quot;none&quot;;&#xA;&#xA;//try{ row2.status=row1.status.toLowerCase(); }&#xA;//catch(Exception e){row2.status=&quot;b&quot;;}&#xA;&#xA;//error here means wrong input data, e.g. 15:37.5 or is null&#xA;/*SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;&#xA;try{&#xA;&#x9;row2.fdtgl_input=dt.parse(row1.fdtgl_input.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row2.fdtgl_input=dt.parse(&quot;01/01/0001&quot;);&#xA;}&#xA;&#xA;try{&#xA;&#x9;row2.tgl_dtg=dt.parse(row1.tgl_dtg.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row2.tgl_dtg=dt.parse(&quot;01/01/0001&quot;);&#xA;}*/&#xA;&#xA;row2.fckd_jnskol=data_checker.computeKoleksi(row1.fckd_jnskol);&#xA;row2.status=data_checker.computeStatus(row1.status);&#xA;row2.fdtgl_input=data_checker.computeDate(row1.fdtgl_input);&#xA;row2.tgl_dtg=data_checker.computeDate(row1.tgl_dtg);&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row2.k999a=row1.k999a;&#xA;row2.knokat=row1.knokat;&#xA;row2.fnkd_lokasi=row1.fnkd_lokasi;&#xA;&#xA;row2.fckd_jnskol=data_checker.computeKoleksi(row1.fckd_jnskol);&#xA;row2.status=data_checker.computeStatus(row1.status);&#xA;row2.fdtgl_input=data_checker.computeDate(row1.fdtgl_input);&#xA;row2.tgl_dtg=data_checker.computeDate(row1.tgl_dtg);&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="lowercase status, default nilai koleksi, parse date"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -197,10 +197,10 @@
       <column comment="" defaultValue="" key="false" length="19" name="kode_judul" nullable="true" pattern="" precision="0" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="judul" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="kelompok_kategori" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="penerbit" nullable="true" pattern="" precision="0" sourceType="_TEXT" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="jenis_terbitan" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="nama_koleksi" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="status_sekarang" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="penerbit" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties/>
@@ -210,10 +210,10 @@
         <mapperTableEntries name="kode_judul" expression="row2.knokat " type="id_Long" nullable="true"/>
         <mapperTableEntries name="judul" expression="row3.k245a " type="id_String" nullable="true"/>
         <mapperTableEntries name="kelompok_kategori" expression="row4.nama_kategori " type="id_String" nullable="true"/>
-        <mapperTableEntries name="penerbit" expression="row6.k260b " type="id_String" nullable="true"/>
         <mapperTableEntries name="jenis_terbitan" expression="row10.fcket_jnstbt " type="id_String" nullable="true"/>
         <mapperTableEntries name="nama_koleksi" expression="row12.k099l " type="id_String" nullable="true"/>
         <mapperTableEntries name="status_sekarang" expression="row13.kondisi " type="id_String" nullable="true"/>
+        <mapperTableEntries name="penerbit" expression="row15.k260b " type="id_String" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row2" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="k999a" type="id_String" nullable="true"/>
@@ -249,7 +249,7 @@
         <mapperTableEntries name="kode_kondisi" expression="row2.status" type="id_String" nullable="true"/>
         <mapperTableEntries name="kondisi" type="id_String" nullable="true"/>
       </inputTables>
-      <inputTables sizeState="INTERMEDIATE" name="row6" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
+      <inputTables sizeState="INTERMEDIATE" name="row15" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="fnkd_penerbit" expression="row3.fnkd_penerbit" type="id_Integer"/>
         <mapperTableEntries name="k260b" type="id_String" nullable="true"/>
       </inputTables>
@@ -412,7 +412,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_2" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row3.knokat=row5.knokat;&#xA;row3.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row3.k245a=row5.k245a;&#xA;&#xA;/*try{&#xA;&#x9;row3.fnkd_penerbit=Integer.valueOf(row5.fnkd_penerbit);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row3.fnkd_penerbit=0;&#xA;}&#xA;&#xA;row3.k099a=0;&#xA;try{&#xA;&#x9;Integer calc=(int)Math.floor(Double.valueOf(row5.k099a));&#xA;&#x9;if(calc>=10){&#xA;&#x9;&#x9;calc=calc-(calc%10);&#xA;&#x9;}&#xA;&#x9;row3.k099a=calc;&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row3.k099a=0;&#xA;}*/&#xA;&#xA;row3.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row3.k099a=data_checker.computeKategori(row5.k099a);&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row3.knokat=row5.knokat;&#xA;row3.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row3.k245a=row5.k245a;&#xA;&#xA;&#xA;row3.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row3.k099a=data_checker.computeKategori(row5.k099a);&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="calculate kode kategori"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -514,7 +514,7 @@
       <column comment="" key="false" length="-1" name="nama_kategori" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="576">
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="256" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_5" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_2"/>
@@ -554,7 +554,7 @@
       <column comment="" key="false" length="2147483647" name="fcket_jnstbt" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="512">
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="512">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_6" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_2"/>
@@ -594,7 +594,7 @@
       <column comment="" key="false" length="2147483647" name="k099l" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="416" posY="544">
+  <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="480" posY="544">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUnite_1" show="false"/>
     <elementParameter field="TEXT" name="LABEL" value="combine koleksi data"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -603,7 +603,7 @@
       <column comment="" key="false" length="2147483647" name="k099l" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="288" posY="576">
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFixedFlowInput_1" show="false"/>
     <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
     <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
@@ -682,7 +682,7 @@
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="544">
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="480">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_2" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_2"/>
@@ -722,6 +722,38 @@
       <column comment="" key="false" length="2147483647" name="k260b" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
+  <node componentName="tUnite" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="224" posY="512">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tUnite_3" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="combine penerbit data"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tUnite_3">
+      <column comment="" defaultValue="" key="false" length="10" name="fnkd_penerbit" nullable="false" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="k260b" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tFixedFlowInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="544">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFixedFlowInput_3" show="false"/>
+    <elementParameter field="TEXT" name="NB_ROWS" value="1"/>
+    <elementParameter field="RADIO" name="USE_SINGLEMODE" value="true"/>
+    <elementParameter field="TABLE" name="VALUES">
+      <elementValue elementRef="SCHEMA_COLUMN" value="k260b"/>
+      <elementValue elementRef="VALUE" value="0"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="fnkd_penerbit"/>
+      <elementValue elementRef="VALUE" value="&quot;unknown&quot;"/>
+    </elementParameter>
+    <elementParameter field="RADIO" name="USE_INTABLE" value="false"/>
+    <elementParameter field="TABLE" name="INTABLE" show="false"/>
+    <elementParameter field="RADIO" name="USE_INLINECONTENT" value="false"/>
+    <elementParameter field="TEXT" name="ROWSEPARATOR" value="&quot;\n&quot;" show="false"/>
+    <elementParameter field="TEXT" name="FIELDSEPARATOR" value="&quot;;&quot;" show="false"/>
+    <elementParameter field="MEMO" name="INLINECONTENT" value="" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="penerbit null value"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tFixedFlowInput_3">
+      <column comment="" key="false" length="-1" name="k260b" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fnkd_penerbit" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
   <node componentName="tPostgresqlCommit" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="800" posY="576">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBCommit_1" show="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
@@ -733,7 +765,7 @@
   <node componentName="tPostgresqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="64" posY="128">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBConnection_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="V9_X"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;192.168.38.9&quot;"/>
     <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
     <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;skripsi&quot;"/>
@@ -867,9 +899,17 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row13" show="false"/>
   </connection>
-  <connection connectorName="FLOW" label="row6" lineStyle="8" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tMap_1">
+  <connection connectorName="FLOW" label="row6" lineStyle="10" mergeOrder="1" metaname="tDBInput_2" offsetLabelX="0" offsetLabelY="0" source="tDBInput_2" target="tUnite_3">
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row6" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row15" lineStyle="8" metaname="tUnite_3" offsetLabelX="0" offsetLabelY="0" source="tUnite_3" target="tMap_1">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row15" show="false"/>
+  </connection>
+  <connection connectorName="FLOW" label="row14" lineStyle="10" mergeOrder="2" metaname="tFixedFlowInput_3" offsetLabelX="0" offsetLabelY="0" source="tFixedFlowInput_3" target="tUnite_3">
+    <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="row14" show="false"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_1" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_1" target="tDBConnection_2">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk1" show="false"/>

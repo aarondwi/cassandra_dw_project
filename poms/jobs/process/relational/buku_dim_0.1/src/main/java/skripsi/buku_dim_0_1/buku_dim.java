@@ -373,6 +373,17 @@ public class buku_dim implements TalendJob {
 		tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
 	}
 
+	public void tUnite_3_error(Exception exception, String errorComponent,
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
 	public void tDBInput_4_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -487,6 +498,17 @@ public class buku_dim implements TalendJob {
 				globalMap);
 	}
 
+	public void tFixedFlowInput_3_error(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tDBInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
 	public void tJava_1_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -498,7 +520,7 @@ public class buku_dim implements TalendJob {
 		tJava_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tAdvancedHash_row6_error(Exception exception,
+	public void tAdvancedHash_row15_error(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
 
@@ -871,8 +893,8 @@ public class buku_dim implements TalendJob {
 
 				new BytesLimit65535_tDBConnection_1().limitLog4jByte();
 
-				String url_tDBConnection_1 = "jdbc:postgresql://" + "" + ":"
-						+ "5432" + "/" + "skripsi";
+				String url_tDBConnection_1 = "jdbc:postgresql://"
+						+ "192.168.38.9" + ":" + "5432" + "/" + "skripsi";
 
 				String dbUser_tDBConnection_1 = "skripsiuser";
 
@@ -1238,12 +1260,6 @@ public class buku_dim implements TalendJob {
 			return this.kelompok_kategori;
 		}
 
-		public String penerbit;
-
-		public String getPenerbit() {
-			return this.penerbit;
-		}
-
 		public String jenis_terbitan;
 
 		public String getJenis_terbitan() {
@@ -1260,6 +1276,12 @@ public class buku_dim implements TalendJob {
 
 		public String getStatus_sekarang() {
 			return this.status_sekarang;
+		}
+
+		public String penerbit;
+
+		public String getPenerbit() {
+			return this.penerbit;
 		}
 
 		private String readString(ObjectInputStream dis) throws IOException {
@@ -1316,13 +1338,13 @@ public class buku_dim implements TalendJob {
 
 					this.kelompok_kategori = readString(dis);
 
-					this.penerbit = readString(dis);
-
 					this.jenis_terbitan = readString(dis);
 
 					this.nama_koleksi = readString(dis);
 
 					this.status_sekarang = readString(dis);
+
+					this.penerbit = readString(dis);
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
@@ -1359,10 +1381,6 @@ public class buku_dim implements TalendJob {
 
 				// String
 
-				writeString(this.penerbit, dos);
-
-				// String
-
 				writeString(this.jenis_terbitan, dos);
 
 				// String
@@ -1372,6 +1390,10 @@ public class buku_dim implements TalendJob {
 				// String
 
 				writeString(this.status_sekarang, dos);
+
+				// String
+
+				writeString(this.penerbit, dos);
 
 			} catch (IOException e) {
 				throw new RuntimeException(e);
@@ -1388,10 +1410,10 @@ public class buku_dim implements TalendJob {
 			sb.append(",kode_judul=" + String.valueOf(kode_judul));
 			sb.append(",judul=" + judul);
 			sb.append(",kelompok_kategori=" + kelompok_kategori);
-			sb.append(",penerbit=" + penerbit);
 			sb.append(",jenis_terbitan=" + jenis_terbitan);
 			sb.append(",nama_koleksi=" + nama_koleksi);
 			sb.append(",status_sekarang=" + status_sekarang);
+			sb.append(",penerbit=" + penerbit);
 			sb.append("]");
 
 			return sb.toString();
@@ -2278,11 +2300,11 @@ public class buku_dim implements TalendJob {
 				row13Struct row13HashKey = new row13Struct();
 				row13Struct row13Default = new row13Struct();
 
-				org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row6Struct> tHash_Lookup_row6 = (org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row6Struct>) ((org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row6Struct>) globalMap
-						.get("tHash_Lookup_row6"));
+				org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row15Struct> tHash_Lookup_row15 = (org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row15Struct>) ((org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row15Struct>) globalMap
+						.get("tHash_Lookup_row15"));
 
-				row6Struct row6HashKey = new row6Struct();
-				row6Struct row6Default = new row6Struct();
+				row15Struct row15HashKey = new row15Struct();
+				row15Struct row15Default = new row15Struct();
 				// ###############################
 
 				// ###############################
@@ -2478,29 +2500,6 @@ public class buku_dim implements TalendJob {
 						row2.k999a = row1.k999a;
 						row2.knokat = row1.knokat;
 						row2.fnkd_lokasi = row1.fnkd_lokasi;
-
-						// if(row1.fckd_jnskol!=null)row2.fckd_jnskol=row1.fckd_jnskol;
-						// else row2.fckd_jnskol="none";
-
-						// try{ row2.status=row1.status.toLowerCase(); }
-						// catch(Exception e){row2.status="b";}
-
-						// error here means wrong input data, e.g. 15:37.5 or is
-						// null
-						/*
-						 * SimpleDateFormat dt=new
-						 * SimpleDateFormat("MM/dd/yyyy");
-						 * 
-						 * try{
-						 * row2.fdtgl_input=dt.parse(row1.fdtgl_input.split(
-						 * " ")[0]); } catch(Exception e){
-						 * row2.fdtgl_input=dt.parse("01/01/0001"); }
-						 * 
-						 * try{
-						 * row2.tgl_dtg=dt.parse(row1.tgl_dtg.split(" ")[0]); }
-						 * catch(Exception e){
-						 * row2.tgl_dtg=dt.parse("01/01/0001"); }
-						 */
 
 						row2.fckd_jnskol = data_checker
 								.computeKoleksi(row1.fckd_jnskol);
@@ -2769,56 +2768,56 @@ public class buku_dim implements TalendJob {
 						}
 
 						// /////////////////////////////////////////////
-						// Starting Lookup Table "row6"
+						// Starting Lookup Table "row15"
 						// /////////////////////////////////////////////
 
-						boolean forceLooprow6 = false;
+						boolean forceLooprow15 = false;
 
-						row6Struct row6ObjectFromLookup = null;
+						row15Struct row15ObjectFromLookup = null;
 
 						if (!rejectedInnerJoin_tMap_1) { // G_TM_M_020
 
 							hasCasePrimitiveKeyWithNull_tMap_1 = false;
 
-							Object exprKeyValue_row6__fnkd_penerbit = row3.fnkd_penerbit;
-							if (exprKeyValue_row6__fnkd_penerbit == null) {
+							Object exprKeyValue_row15__fnkd_penerbit = row3.fnkd_penerbit;
+							if (exprKeyValue_row15__fnkd_penerbit == null) {
 								hasCasePrimitiveKeyWithNull_tMap_1 = true;
 							} else {
-								row6HashKey.fnkd_penerbit = (int) (Integer) exprKeyValue_row6__fnkd_penerbit;
+								row15HashKey.fnkd_penerbit = (int) (Integer) exprKeyValue_row15__fnkd_penerbit;
 							}
 
-							row6HashKey.hashCodeDirty = true;
+							row15HashKey.hashCodeDirty = true;
 
 							if (!hasCasePrimitiveKeyWithNull_tMap_1) { // G_TM_M_091
 
-								tHash_Lookup_row6.lookup(row6HashKey);
+								tHash_Lookup_row15.lookup(row15HashKey);
 
 							} // G_TM_M_091
 
 						} // G_TM_M_020
 
-						if (tHash_Lookup_row6 != null
-								&& tHash_Lookup_row6.getCount(row6HashKey) > 1) { // G
+						if (tHash_Lookup_row15 != null
+								&& tHash_Lookup_row15.getCount(row15HashKey) > 1) { // G
 																					// 071
 
-							// System.out.println("WARNING: UNIQUE MATCH is configured for the lookup 'row6' and it contains more one result from keys :  row6.fnkd_penerbit = '"
-							// + row6HashKey.fnkd_penerbit + "'");
+							// System.out.println("WARNING: UNIQUE MATCH is configured for the lookup 'row15' and it contains more one result from keys :  row15.fnkd_penerbit = '"
+							// + row15HashKey.fnkd_penerbit + "'");
 						} // G 071
 
-						row6Struct row6 = null;
+						row15Struct row15 = null;
 
-						row6Struct fromLookup_row6 = null;
-						row6 = row6Default;
+						row15Struct fromLookup_row15 = null;
+						row15 = row15Default;
 
-						if (tHash_Lookup_row6 != null
-								&& tHash_Lookup_row6.hasNext()) { // G 099
+						if (tHash_Lookup_row15 != null
+								&& tHash_Lookup_row15.hasNext()) { // G 099
 
-							fromLookup_row6 = tHash_Lookup_row6.next();
+							fromLookup_row15 = tHash_Lookup_row15.next();
 
 						} // G 099
 
-						if (fromLookup_row6 != null) {
-							row6 = fromLookup_row6;
+						if (fromLookup_row15 != null) {
+							row15 = fromLookup_row15;
 						}
 
 						// ###############################
@@ -2838,10 +2837,10 @@ public class buku_dim implements TalendJob {
 							load_tmp.kode_judul = row2.knokat;
 							load_tmp.judul = row3.k245a;
 							load_tmp.kelompok_kategori = row4.nama_kategori;
-							load_tmp.penerbit = row6.k260b;
 							load_tmp.jenis_terbitan = row10.fcket_jnstbt;
 							load_tmp.nama_koleksi = row12.k099l;
 							load_tmp.status_sekarang = row13.kondisi;
+							load_tmp.penerbit = row15.k260b;
 							load = load_tmp;
 							// ###############################
 
@@ -3126,10 +3125,10 @@ public class buku_dim implements TalendJob {
 				}
 				globalMap.remove("tHash_Lookup_row13");
 
-				if (tHash_Lookup_row6 != null) {
-					tHash_Lookup_row6.endGet();
+				if (tHash_Lookup_row15 != null) {
+					tHash_Lookup_row15.endGet();
 				}
-				globalMap.remove("tHash_Lookup_row6");
+				globalMap.remove("tHash_Lookup_row15");
 
 				// ###############################
 
@@ -3252,7 +3251,7 @@ public class buku_dim implements TalendJob {
 		} finally {
 
 			// free memory for "tMap_1"
-			globalMap.remove("tHash_Lookup_row6");
+			globalMap.remove("tHash_Lookup_row15");
 
 			// free memory for "tMap_1"
 			globalMap.remove("tHash_Lookup_row3");
@@ -3322,8 +3321,8 @@ public class buku_dim implements TalendJob {
 		globalMap.put("tDBInput_1_SUBPROCESS_STATE", 1);
 	}
 
-	public static class row6Struct implements
-			routines.system.IPersistableComparableLookupRow<row6Struct> {
+	public static class row15Struct implements
+			routines.system.IPersistableComparableLookupRow<row15Struct> {
 		final static byte[] commonByteArrayLock_SKRIPSI_buku_dim = new byte[0];
 		static byte[] commonByteArray_SKRIPSI_buku_dim = new byte[0];
 		protected static final int DEFAULT_HASHCODE = 1;
@@ -3367,7 +3366,7 @@ public class buku_dim implements TalendJob {
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			final row6Struct other = (row6Struct) obj;
+			final row15Struct other = (row15Struct) obj;
 
 			if (this.fnkd_penerbit != other.fnkd_penerbit)
 				return false;
@@ -3375,14 +3374,14 @@ public class buku_dim implements TalendJob {
 			return true;
 		}
 
-		public void copyDataTo(row6Struct other) {
+		public void copyDataTo(row15Struct other) {
 
 			other.fnkd_penerbit = this.fnkd_penerbit;
 			other.k260b = this.k260b;
 
 		}
 
-		public void copyKeysDataTo(row6Struct other) {
+		public void copyKeysDataTo(row15Struct other) {
 
 			other.fnkd_penerbit = this.fnkd_penerbit;
 
@@ -3492,7 +3491,7 @@ public class buku_dim implements TalendJob {
 		/**
 		 * Compare keys
 		 */
-		public int compareTo(row6Struct other) {
+		public int compareTo(row15Struct other) {
 
 			int returnValue = -1;
 
@@ -3501,6 +3500,296 @@ public class buku_dim implements TalendJob {
 			if (returnValue != 0) {
 				return returnValue;
 			}
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
+	public static class row6Struct implements
+			routines.system.IPersistableRow<row6Struct> {
+		final static byte[] commonByteArrayLock_SKRIPSI_buku_dim = new byte[0];
+		static byte[] commonByteArray_SKRIPSI_buku_dim = new byte[0];
+
+		public int fnkd_penerbit;
+
+		public int getFnkd_penerbit() {
+			return this.fnkd_penerbit;
+		}
+
+		public String k260b;
+
+		public String getK260b() {
+			return this.k260b;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_SKRIPSI_buku_dim.length) {
+					if (length < 1024
+							&& commonByteArray_SKRIPSI_buku_dim.length == 0) {
+						commonByteArray_SKRIPSI_buku_dim = new byte[1024];
+					} else {
+						commonByteArray_SKRIPSI_buku_dim = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_SKRIPSI_buku_dim, 0, length);
+				strReturn = new String(commonByteArray_SKRIPSI_buku_dim, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_SKRIPSI_buku_dim) {
+
+				try {
+
+					int length = 0;
+
+					this.fnkd_penerbit = dis.readInt();
+
+					this.k260b = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// int
+
+				dos.writeInt(this.fnkd_penerbit);
+
+				// String
+
+				writeString(this.k260b, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("fnkd_penerbit=" + String.valueOf(fnkd_penerbit));
+			sb.append(",k260b=" + k260b);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row6Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
+	public static class row14Struct implements
+			routines.system.IPersistableRow<row14Struct> {
+		final static byte[] commonByteArrayLock_SKRIPSI_buku_dim = new byte[0];
+		static byte[] commonByteArray_SKRIPSI_buku_dim = new byte[0];
+
+		public Integer k260b;
+
+		public Integer getK260b() {
+			return this.k260b;
+		}
+
+		public String fnkd_penerbit;
+
+		public String getFnkd_penerbit() {
+			return this.fnkd_penerbit;
+		}
+
+		private Integer readInteger(ObjectInputStream dis) throws IOException {
+			Integer intReturn;
+			int length = 0;
+			length = dis.readByte();
+			if (length == -1) {
+				intReturn = null;
+			} else {
+				intReturn = dis.readInt();
+			}
+			return intReturn;
+		}
+
+		private void writeInteger(Integer intNum, ObjectOutputStream dos)
+				throws IOException {
+			if (intNum == null) {
+				dos.writeByte(-1);
+			} else {
+				dos.writeByte(0);
+				dos.writeInt(intNum);
+			}
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_SKRIPSI_buku_dim.length) {
+					if (length < 1024
+							&& commonByteArray_SKRIPSI_buku_dim.length == 0) {
+						commonByteArray_SKRIPSI_buku_dim = new byte[1024];
+					} else {
+						commonByteArray_SKRIPSI_buku_dim = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_SKRIPSI_buku_dim, 0, length);
+				strReturn = new String(commonByteArray_SKRIPSI_buku_dim, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_SKRIPSI_buku_dim) {
+
+				try {
+
+					int length = 0;
+
+					this.k260b = readInteger(dis);
+
+					this.fnkd_penerbit = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// Integer
+
+				writeInteger(this.k260b, dos);
+
+				// String
+
+				writeString(this.fnkd_penerbit, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("k260b=" + String.valueOf(k260b));
+			sb.append(",fnkd_penerbit=" + fnkd_penerbit);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row14Struct other) {
+
+			int returnValue = -1;
 
 			return returnValue;
 		}
@@ -3553,15 +3842,66 @@ public class buku_dim implements TalendJob {
 
 				row6Struct row6 = new row6Struct();
 
+				row14Struct row14 = new row14Struct();
+
+				row15Struct row15 = new row15Struct();
+
 				/**
-				 * [tAdvancedHash_row6 begin ] start
+				 * [tAdvancedHash_row15 begin ] start
 				 */
 
-				ok_Hash.put("tAdvancedHash_row6", false);
-				start_Hash
-						.put("tAdvancedHash_row6", System.currentTimeMillis());
+				ok_Hash.put("tAdvancedHash_row15", false);
+				start_Hash.put("tAdvancedHash_row15",
+						System.currentTimeMillis());
 
-				currentComponent = "tAdvancedHash_row6";
+				currentComponent = "tAdvancedHash_row15";
+
+				if (execStat) {
+					if (resourceMap.get("inIterateVComp") == null) {
+
+						runStat.updateStatOnConnection("row15" + iterateId, 0,
+								0);
+
+					}
+				}
+
+				int tos_count_tAdvancedHash_row15 = 0;
+
+				class BytesLimit65535_tAdvancedHash_row15 {
+					public void limitLog4jByte() throws Exception {
+
+					}
+				}
+
+				new BytesLimit65535_tAdvancedHash_row15().limitLog4jByte();
+
+				// connection name:row15
+				// source node:tUnite_3 - inputs:(row6,row14)
+				// outputs:(row15,row15) | target node:tAdvancedHash_row15 -
+				// inputs:(row15) outputs:()
+				// linked node: tMap_1 -
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
+
+				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row15 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
+
+				org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row15Struct> tHash_Lookup_row15 = org.talend.designer.components.lookup.memory.AdvancedMemoryLookup
+						.<row15Struct> getLookup(matchingModeEnum_row15);
+
+				globalMap.put("tHash_Lookup_row15", tHash_Lookup_row15);
+
+				/**
+				 * [tAdvancedHash_row15 begin ] stop
+				 */
+
+				/**
+				 * [tUnite_3 begin ] start
+				 */
+
+				ok_Hash.put("tUnite_3", false);
+				start_Hash.put("tUnite_3", System.currentTimeMillis());
+
+				currentComponent = "tUnite_3";
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
@@ -3571,32 +3911,29 @@ public class buku_dim implements TalendJob {
 					}
 				}
 
-				int tos_count_tAdvancedHash_row6 = 0;
+				if (execStat) {
+					if (resourceMap.get("inIterateVComp") == null) {
 
-				class BytesLimit65535_tAdvancedHash_row6 {
+						runStat.updateStatOnConnection("row14" + iterateId, 0,
+								0);
+
+					}
+				}
+
+				int tos_count_tUnite_3 = 0;
+
+				class BytesLimit65535_tUnite_3 {
 					public void limitLog4jByte() throws Exception {
 
 					}
 				}
 
-				new BytesLimit65535_tAdvancedHash_row6().limitLog4jByte();
+				new BytesLimit65535_tUnite_3().limitLog4jByte();
 
-				// connection name:row6
-				// source node:tDBInput_2 - inputs:(after_tDBInput_1)
-				// outputs:(row6,row6) | target node:tAdvancedHash_row6 -
-				// inputs:(row6) outputs:()
-				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
-
-				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row6 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
-
-				org.talend.designer.components.lookup.memory.AdvancedMemoryLookup<row6Struct> tHash_Lookup_row6 = org.talend.designer.components.lookup.memory.AdvancedMemoryLookup
-						.<row6Struct> getLookup(matchingModeEnum_row6);
-
-				globalMap.put("tHash_Lookup_row6", tHash_Lookup_row6);
+				int nb_line_tUnite_3 = 0;
 
 				/**
-				 * [tAdvancedHash_row6 begin ] stop
+				 * [tUnite_3 begin ] stop
 				 */
 
 				/**
@@ -3690,10 +4027,10 @@ public class buku_dim implements TalendJob {
 						 */
 
 						/**
-						 * [tAdvancedHash_row6 main ] start
+						 * [tUnite_3 main ] start
 						 */
 
-						currentComponent = "tAdvancedHash_row6";
+						currentComponent = "tUnite_3";
 
 						// row6
 						// row6
@@ -3703,38 +4040,93 @@ public class buku_dim implements TalendJob {
 									1, 1);
 						}
 
-						row6Struct row6_HashRow = new row6Struct();
+						// row14
+						// row6
 
-						row6_HashRow.fnkd_penerbit = row6.fnkd_penerbit;
+						// ////////
 
-						row6_HashRow.k260b = row6.k260b;
+						// for output
+						row15 = new row15Struct();
 
-						tHash_Lookup_row6.put(row6_HashRow);
+						row15.fnkd_penerbit = row6.fnkd_penerbit;
+						row15.k260b = row6.k260b;
 
-						tos_count_tAdvancedHash_row6++;
+						nb_line_tUnite_3++;
+
+						// ////////
+
+						tos_count_tUnite_3++;
 
 						/**
-						 * [tAdvancedHash_row6 main ] stop
+						 * [tUnite_3 main ] stop
 						 */
 
 						/**
-						 * [tAdvancedHash_row6 process_data_begin ] start
+						 * [tUnite_3 process_data_begin ] start
 						 */
 
-						currentComponent = "tAdvancedHash_row6";
+						currentComponent = "tUnite_3";
 
 						/**
-						 * [tAdvancedHash_row6 process_data_begin ] stop
+						 * [tUnite_3 process_data_begin ] stop
 						 */
 
 						/**
-						 * [tAdvancedHash_row6 process_data_end ] start
+						 * [tAdvancedHash_row15 main ] start
 						 */
 
-						currentComponent = "tAdvancedHash_row6";
+						currentComponent = "tAdvancedHash_row15";
+
+						// row15
+						// row15
+
+						if (execStat) {
+							runStat.updateStatOnConnection("row15" + iterateId,
+									1, 1);
+						}
+
+						row15Struct row15_HashRow = new row15Struct();
+
+						row15_HashRow.fnkd_penerbit = row15.fnkd_penerbit;
+
+						row15_HashRow.k260b = row15.k260b;
+
+						tHash_Lookup_row15.put(row15_HashRow);
+
+						tos_count_tAdvancedHash_row15++;
 
 						/**
-						 * [tAdvancedHash_row6 process_data_end ] stop
+						 * [tAdvancedHash_row15 main ] stop
+						 */
+
+						/**
+						 * [tAdvancedHash_row15 process_data_begin ] start
+						 */
+
+						currentComponent = "tAdvancedHash_row15";
+
+						/**
+						 * [tAdvancedHash_row15 process_data_begin ] stop
+						 */
+
+						/**
+						 * [tAdvancedHash_row15 process_data_end ] start
+						 */
+
+						currentComponent = "tAdvancedHash_row15";
+
+						/**
+						 * [tAdvancedHash_row15 process_data_end ] stop
+						 */
+
+						/**
+						 * [tUnite_3 process_data_end ] start
+						 */
+
+						currentComponent = "tUnite_3";
+
+						/**
+						 * [tUnite_3 process_data_end ] stop
 						 */
 
 						/**
@@ -3768,13 +4160,192 @@ public class buku_dim implements TalendJob {
 				 */
 
 				/**
-				 * [tAdvancedHash_row6 end ] start
+				 * [tFixedFlowInput_3 begin ] start
 				 */
 
-				currentComponent = "tAdvancedHash_row6";
+				ok_Hash.put("tFixedFlowInput_3", false);
+				start_Hash.put("tFixedFlowInput_3", System.currentTimeMillis());
 
-				tHash_Lookup_row6.endPut();
+				currentComponent = "tFixedFlowInput_3";
 
+				int tos_count_tFixedFlowInput_3 = 0;
+
+				class BytesLimit65535_tFixedFlowInput_3 {
+					public void limitLog4jByte() throws Exception {
+
+					}
+				}
+
+				new BytesLimit65535_tFixedFlowInput_3().limitLog4jByte();
+
+				for (int i_tFixedFlowInput_3 = 0; i_tFixedFlowInput_3 < 1; i_tFixedFlowInput_3++) {
+
+					row14.k260b = 0;
+
+					row14.fnkd_penerbit = "unknown";
+
+					/**
+					 * [tFixedFlowInput_3 begin ] stop
+					 */
+
+					/**
+					 * [tFixedFlowInput_3 main ] start
+					 */
+
+					currentComponent = "tFixedFlowInput_3";
+
+					tos_count_tFixedFlowInput_3++;
+
+					/**
+					 * [tFixedFlowInput_3 main ] stop
+					 */
+
+					/**
+					 * [tFixedFlowInput_3 process_data_begin ] start
+					 */
+
+					currentComponent = "tFixedFlowInput_3";
+
+					/**
+					 * [tFixedFlowInput_3 process_data_begin ] stop
+					 */
+
+					/**
+					 * [tUnite_3 main ] start
+					 */
+
+					currentComponent = "tUnite_3";
+
+					// row6
+					// row14
+
+					// row14
+					// row14
+
+					if (execStat) {
+						runStat.updateStatOnConnection("row14" + iterateId, 1,
+								1);
+					}
+
+					// ////////
+
+					// for output
+					row15 = new row15Struct();
+
+					row15.fnkd_penerbit = row14.k260b;
+					row15.k260b = row14.fnkd_penerbit;
+
+					nb_line_tUnite_3++;
+
+					// ////////
+
+					tos_count_tUnite_3++;
+
+					/**
+					 * [tUnite_3 main ] stop
+					 */
+
+					/**
+					 * [tUnite_3 process_data_begin ] start
+					 */
+
+					currentComponent = "tUnite_3";
+
+					/**
+					 * [tUnite_3 process_data_begin ] stop
+					 */
+
+					/**
+					 * [tAdvancedHash_row15 main ] start
+					 */
+
+					currentComponent = "tAdvancedHash_row15";
+
+					// row15
+					// row15
+
+					if (execStat) {
+						runStat.updateStatOnConnection("row15" + iterateId, 1,
+								1);
+					}
+
+					row15Struct row15_HashRow = new row15Struct();
+
+					row15_HashRow.fnkd_penerbit = row15.fnkd_penerbit;
+
+					row15_HashRow.k260b = row15.k260b;
+
+					tHash_Lookup_row15.put(row15_HashRow);
+
+					tos_count_tAdvancedHash_row15++;
+
+					/**
+					 * [tAdvancedHash_row15 main ] stop
+					 */
+
+					/**
+					 * [tAdvancedHash_row15 process_data_begin ] start
+					 */
+
+					currentComponent = "tAdvancedHash_row15";
+
+					/**
+					 * [tAdvancedHash_row15 process_data_begin ] stop
+					 */
+
+					/**
+					 * [tAdvancedHash_row15 process_data_end ] start
+					 */
+
+					currentComponent = "tAdvancedHash_row15";
+
+					/**
+					 * [tAdvancedHash_row15 process_data_end ] stop
+					 */
+
+					/**
+					 * [tUnite_3 process_data_end ] start
+					 */
+
+					currentComponent = "tUnite_3";
+
+					/**
+					 * [tUnite_3 process_data_end ] stop
+					 */
+
+					/**
+					 * [tFixedFlowInput_3 process_data_end ] start
+					 */
+
+					currentComponent = "tFixedFlowInput_3";
+
+					/**
+					 * [tFixedFlowInput_3 process_data_end ] stop
+					 */
+
+					/**
+					 * [tFixedFlowInput_3 end ] start
+					 */
+
+					currentComponent = "tFixedFlowInput_3";
+
+				}
+				globalMap.put("tFixedFlowInput_3_NB_LINE", 1);
+
+				ok_Hash.put("tFixedFlowInput_3", true);
+				end_Hash.put("tFixedFlowInput_3", System.currentTimeMillis());
+
+				/**
+				 * [tFixedFlowInput_3 end ] stop
+				 */
+
+				/**
+				 * [tUnite_3 end ] start
+				 */
+
+				currentComponent = "tUnite_3";
+
+				globalMap.put("tUnite_3_NB_LINE", nb_line_tUnite_3);
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
@@ -3782,11 +4353,42 @@ public class buku_dim implements TalendJob {
 					}
 				}
 
-				ok_Hash.put("tAdvancedHash_row6", true);
-				end_Hash.put("tAdvancedHash_row6", System.currentTimeMillis());
+				if (execStat) {
+					if (resourceMap.get("inIterateVComp") == null
+							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
+						runStat.updateStatOnConnection("row14" + iterateId, 2,
+								0);
+					}
+				}
+
+				ok_Hash.put("tUnite_3", true);
+				end_Hash.put("tUnite_3", System.currentTimeMillis());
 
 				/**
-				 * [tAdvancedHash_row6 end ] stop
+				 * [tUnite_3 end ] stop
+				 */
+
+				/**
+				 * [tAdvancedHash_row15 end ] start
+				 */
+
+				currentComponent = "tAdvancedHash_row15";
+
+				tHash_Lookup_row15.endPut();
+
+				if (execStat) {
+					if (resourceMap.get("inIterateVComp") == null
+							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
+						runStat.updateStatOnConnection("row15" + iterateId, 2,
+								0);
+					}
+				}
+
+				ok_Hash.put("tAdvancedHash_row15", true);
+				end_Hash.put("tAdvancedHash_row15", System.currentTimeMillis());
+
+				/**
+				 * [tAdvancedHash_row15 end ] stop
 				 */
 
 			}// end the resume
@@ -3817,13 +4419,33 @@ public class buku_dim implements TalendJob {
 				 */
 
 				/**
-				 * [tAdvancedHash_row6 finally ] start
+				 * [tFixedFlowInput_3 finally ] start
 				 */
 
-				currentComponent = "tAdvancedHash_row6";
+				currentComponent = "tFixedFlowInput_3";
 
 				/**
-				 * [tAdvancedHash_row6 finally ] stop
+				 * [tFixedFlowInput_3 finally ] stop
+				 */
+
+				/**
+				 * [tUnite_3 finally ] start
+				 */
+
+				currentComponent = "tUnite_3";
+
+				/**
+				 * [tUnite_3 finally ] stop
+				 */
+
+				/**
+				 * [tAdvancedHash_row15 finally ] start
+				 */
+
+				currentComponent = "tAdvancedHash_row15";
+
+				/**
+				 * [tAdvancedHash_row15 finally ] stop
 				 */
 
 			} catch (java.lang.Exception e) {
@@ -4428,7 +5050,8 @@ public class buku_dim implements TalendJob {
 				// source node:tJavaRow_2 - inputs:(row5) outputs:(row3,row3) |
 				// target node:tAdvancedHash_row3 - inputs:(row3) outputs:()
 				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
 
 				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row3 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
 
@@ -4618,17 +5241,6 @@ public class buku_dim implements TalendJob {
 						row3.knokat = row5.knokat;
 						row3.fnkd_jnstbt = row5.fnkd_jnstbt;
 						row3.k245a = row5.k245a;
-
-						/*
-						 * try{
-						 * row3.fnkd_penerbit=Integer.valueOf(row5.fnkd_penerbit
-						 * ); } catch(Exception e){ row3.fnkd_penerbit=0; }
-						 * 
-						 * row3.k099a=0; try{ Integer
-						 * calc=(int)Math.floor(Double.valueOf(row5.k099a));
-						 * if(calc>=10){ calc=calc-(calc%10); } row3.k099a=calc;
-						 * } catch(Exception e){ row3.k099a=0; }
-						 */
 
 						row3.fnkd_penerbit = data_checker
 								.computePenerbitInt(row5.fnkd_penerbit);
@@ -5134,7 +5746,8 @@ public class buku_dim implements TalendJob {
 				// outputs:(row10,row10) | target node:tAdvancedHash_row10 -
 				// inputs:(row10) outputs:()
 				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
 
 				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row10 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
 
@@ -6026,7 +6639,8 @@ public class buku_dim implements TalendJob {
 				// outputs:(row12,row12) | target node:tAdvancedHash_row12 -
 				// inputs:(row12) outputs:()
 				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
 
 				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row12 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
 
@@ -6051,7 +6665,7 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
 
 					}
 				}
@@ -6059,7 +6673,7 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
 
 					}
 				}
@@ -6172,9 +6786,6 @@ public class buku_dim implements TalendJob {
 
 						currentComponent = "tUnite_1";
 
-						// row9
-						// row7
-
 						// row7
 						// row7
 
@@ -6182,6 +6793,9 @@ public class buku_dim implements TalendJob {
 							runStat.updateStatOnConnection("row7" + iterateId,
 									1, 1);
 						}
+
+						// row9
+						// row7
 
 						// ////////
 
@@ -6356,15 +6970,15 @@ public class buku_dim implements TalendJob {
 
 					currentComponent = "tUnite_1";
 
+					// row7
+					// row9
+
 					// row9
 					// row9
 
 					if (execStat) {
 						runStat.updateStatOnConnection("row9" + iterateId, 1, 1);
 					}
-
-					// row7
-					// row9
 
 					// ////////
 
@@ -6488,14 +7102,14 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
 					}
 				}
 
@@ -7208,7 +7822,8 @@ public class buku_dim implements TalendJob {
 				// outputs:(row4,row4) | target node:tAdvancedHash_row4 -
 				// inputs:(row4) outputs:()
 				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
 
 				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row4 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
 
@@ -7233,7 +7848,8 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row8" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row11" + iterateId, 0,
+								0);
 
 					}
 				}
@@ -7241,8 +7857,7 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row11" + iterateId, 0,
-								0);
+						runStat.updateStatOnConnection("row8" + iterateId, 0, 0);
 
 					}
 				}
@@ -7607,6 +8222,9 @@ public class buku_dim implements TalendJob {
 
 							currentComponent = "tUnite_2";
 
+							// row11
+							// row8
+
 							// row8
 							// row8
 
@@ -7614,9 +8232,6 @@ public class buku_dim implements TalendJob {
 								runStat.updateStatOnConnection("row8"
 										+ iterateId, 1, 1);
 							}
-
-							// row11
-							// row8
 
 							// ////////
 
@@ -7803,9 +8418,6 @@ public class buku_dim implements TalendJob {
 
 					currentComponent = "tUnite_2";
 
-					// row8
-					// row11
-
 					// row11
 					// row11
 
@@ -7813,6 +8425,9 @@ public class buku_dim implements TalendJob {
 						runStat.updateStatOnConnection("row11" + iterateId, 1,
 								1);
 					}
+
+					// row8
+					// row11
 
 					// ////////
 
@@ -7935,15 +8550,15 @@ public class buku_dim implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row8" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row11" + iterateId, 2,
+								0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row11" + iterateId, 2,
-								0);
+						runStat.updateStatOnConnection("row8" + iterateId, 2, 0);
 					}
 				}
 
@@ -8351,7 +8966,8 @@ public class buku_dim implements TalendJob {
 				// outputs:(row13,row13) | target node:tAdvancedHash_row13 -
 				// inputs:(row13) outputs:()
 				// linked node: tMap_1 -
-				// inputs:(row2,row6,row3,row10,row12,row4,row13) outputs:(load)
+				// inputs:(row2,row15,row3,row10,row12,row4,row13)
+				// outputs:(load)
 
 				org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE matchingModeEnum_row13 = org.talend.designer.components.lookup.common.ICommonLookup.MATCHING_MODE.UNIQUE_MATCH;
 
@@ -9359,6 +9975,6 @@ public class buku_dim implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 247199 characters generated by Talend Open Studio for Big Data on the October
- * 8, 2018 9:57:20 AM ICT
+ * 260813 characters generated by Talend Open Studio for Big Data on the October
+ * 15, 2018 6:24:58 PM ICT
  ************************************************************************************************/

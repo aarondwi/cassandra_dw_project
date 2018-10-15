@@ -191,7 +191,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row6.fntranscid=row1.fntranscid;&#xA;row6.Denda=row1.Denda;&#xA;row6.Terbayar=row1.Terbayar;&#xA;row6.fckd_operator=row1.fckd_operator;&#xA;row6.k999a=row1.k999a;&#xA;&#xA;row6.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row6.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row6.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row6.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row6.tahun=data_checker.computeYear(row1.fdtgl_pinjam);&#xA;&#xA;row6.unique_id=UUID.randomUUID().toString();&#xA;&#xA;/*SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;&#xA;//dt error here means wrong input data, e.g. 15:37.5 or is null&#xA;try{&#xA;&#x9;row6.fdtgl_pinjam=dt.parse(row1.fdtgl_pinjam.split(&quot; &quot;)[0]);&#xA;&#x9;row6.tahun=Integer.valueOf(&#xA;&#x9;&#x9;(row1.fdtgl_pinjam.split(&quot; &quot;)[0]).split(&quot;/&quot;)[2]&#xA;&#x9;);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row6.fdtgl_pinjam=dt.parse(&quot;01/01/0001&quot;);&#xA;&#x9;row6.tahun=1;&#xA;}&#xA;&#xA;try{&#xA;&#x9;row6.fdtgl_batas=dt.parse(row1.fdtgl_batas.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row6.fdtgl_batas=dt.parse(&quot;01/01/0001&quot;);}&#xA;&#xA;try{&#xA;&#x9;row6.fdtgl_kembali=dt.parse(row1.fdtgl_kembali.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row6.fdtgl_kembali=dt.parse(&quot;01/01/0001&quot;);}&#xA;&#xA;&#xA;//number only means a student&#xA;if(row1.fckd_induk.matches(&quot;[0-9]+&quot;) &amp;&amp; row1.fckd_induk.length()==8){&#xA;&#x9;row6.fckd_induk=Integer.valueOf(row1.fckd_induk.substring(0,3));&#xA;}&#xA;else{//means an employee&#xA;&#x9;row6.fckd_induk=0;&#xA;}*/"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row6.fntranscid=row1.fntranscid;&#xA;row6.Denda=row1.Denda;&#xA;row6.Terbayar=row1.Terbayar;&#xA;row6.fckd_operator=row1.fckd_operator;&#xA;row6.k999a=row1.k999a;&#xA;&#xA;row6.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row6.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row6.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row6.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row6.tahun=data_checker.computeYear(row1.fdtgl_pinjam);&#xA;&#xA;row6.unique_id=UUID.randomUUID().toString();&#xA;row6.kode_anggota=row1.fckd_induk;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="parse date,jurusan, get year"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -207,6 +207,7 @@
       <column comment="" defaultValue="" key="false" length="17" name="Terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tahun" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="544" posY="384">
@@ -233,6 +234,7 @@
       <column comment="" defaultValue="" key="false" length="17" name="terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tahun" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="kode_buku" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="19" name="kode_judul" nullable="true" pattern="" precision="0" sourceType="INT8" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="judul" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
@@ -241,9 +243,10 @@
       <column comment="" key="false" length="-1" name="nama_kategori" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="nama_koleksi" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="status" nullable="true" originalDbColumnName="status_sekarang" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="k099a" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="out1">
         <mapperTableEntries name="id_transaksi" expression="row6.fntranscid " type="id_Integer"/>
@@ -254,6 +257,7 @@
         <mapperTableEntries name="terbayar" expression="row6.Terbayar " type="id_Double" nullable="true"/>
         <mapperTableEntries name="tahun" expression="row6.tahun " type="id_Integer"/>
         <mapperTableEntries name="unique_id" expression="row6.unique_id " type="id_String" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" expression="row6.kode_anggota " type="id_String" nullable="true"/>
         <mapperTableEntries name="kode_buku" expression="row8.k999a " type="id_String" nullable="true"/>
         <mapperTableEntries name="kode_judul" expression="row8.knokat " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="judul" expression="row10.k245a " type="id_String" nullable="true"/>
@@ -262,6 +266,7 @@
         <mapperTableEntries name="nama_kategori" expression="row15.nama_kategori " type="id_String"/>
         <mapperTableEntries name="nama_koleksi" expression="row12.k099l " type="id_String"/>
         <mapperTableEntries name="status" expression="row16.kondisi " type="id_String" nullable="true"/>
+        <mapperTableEntries name="k099a" expression="row10.k099a " type="id_Integer" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row6" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="fntranscid" type="id_Integer" nullable="true"/>
@@ -275,6 +280,7 @@
         <mapperTableEntries name="Terbayar" type="id_Double" nullable="true"/>
         <mapperTableEntries name="tahun" type="id_Integer" nullable="true"/>
         <mapperTableEntries name="unique_id" type="id_String" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" type="id_String" nullable="true"/>
       </inputTables>
       <inputTables sizeState="INTERMEDIATE" name="row8" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="k999a" expression="row6.k999a " type="id_String" nullable="true" operator="="/>
@@ -370,7 +376,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="288">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_2" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row8.k999a=row4.k999a;&#xA;row8.knokat=row4.knokat;&#xA;row8.fnkd_lokasi=row4.fnkd_lokasi;&#xA;&#xA;row8.fckd_jnskol=data_checker.computeKoleksi(row4.fckd_jnskol);&#xA;row8.status=data_checker.computeStatus(row4.status);&#xA;row8.fdtgl_input=data_checker.computeDate(row4.fdtgl_input);&#xA;row8.tgl_dtg=data_checker.computeDate(row4.tgl_dtg);&#xA;&#xA;/*if(row4.fckd_jnskol!=null){&#xA;&#x9;row8.fckd_jnskol=row4.fckd_jnskol;&#xA;}&#xA;else {&#xA;&#x9;row8.fckd_jnskol=&quot;none&quot;;&#xA;}&#xA;&#xA;try{&#xA;&#x9;row8.status=row4.status.toLowerCase();&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row8.status=&quot;b&quot;;&#xA;}&#xA;&#xA;//error here means wrong input data, e.g. 15:37.5 or is null&#xA;SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;try{&#xA;&#x9;row8.fdtgl_input=dt.parse(row4.fdtgl_input.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row8.fdtgl_input=dt.parse(&quot;01/01/0001&quot;);;}&#xA;&#xA;try{&#xA;&#x9;row8.tgl_dtg=dt.parse(row4.tgl_dtg.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row8.tgl_dtg=dt.parse(&quot;01/01/0001&quot;);}*/&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row8.k999a=row4.k999a;&#xA;row8.knokat=row4.knokat;&#xA;row8.fnkd_lokasi=row4.fnkd_lokasi;&#xA;&#xA;row8.fckd_jnskol=data_checker.computeKoleksi(row4.fckd_jnskol);&#xA;row8.status=data_checker.computeStatus(row4.status);&#xA;row8.fdtgl_input=data_checker.computeDate(row4.fdtgl_input);&#xA;row8.tgl_dtg=data_checker.computeDate(row4.tgl_dtg);&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="lowercase status, parse date, compute jenis koleksi"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -441,7 +447,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="384">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_3" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="row10.knokat=row5.knokat;&#xA;row10.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row10.k245a=row5.k245a;&#xA;&#xA;row10.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row10.k099a=data_checker.computeKategori(row5.fnkd_penerbit);&#xA;&#xA;/*try{&#xA;&#x9;row10.fnkd_penerbit=Integer.valueOf(row5.fnkd_penerbit);&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row10.fnkd_penerbit=0;&#xA;}&#xA;&#xA;row10.k099a=0;&#xA;try{&#xA;&#x9;Integer calc=(int)Math.floor(Double.valueOf(row5.k099a));&#xA;&#x9;if(calc>=10){&#xA;&#x9;&#x9;calc=calc-(calc%10);&#xA;&#x9;}&#xA;&#x9;row10.k099a=calc;&#xA;}&#xA;catch(Exception e){&#xA;&#x9;row10.k099a=0;&#xA;}*/&#xA;&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="row10.knokat=row5.knokat;&#xA;row10.fnkd_jnstbt=row5.fnkd_jnstbt;&#xA;row10.k245a=row5.k245a;&#xA;&#xA;row10.fnkd_penerbit=data_checker.computePenerbitInt(row5.fnkd_penerbit);&#xA;row10.k099a=data_checker.computeKategori(row5.k099a);&#xA;&#xA;&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="calculate kode kategori"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -644,7 +650,7 @@
     <elementParameter field="TEXT" name="LIMIT" value=""/>
     <elementParameter field="CHECK" name="REMOVE_EMPTY_ROW" value="true"/>
     <elementParameter field="CHECK" name="UNCOMPRESS" value="false"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true"/>
     <elementParameter field="DIRECTORY" name="TEMP_DIR" value="&quot;D:/Apps Installer/TOS_BD-20180411_1414-V7.0.1/workspace&quot;" show="false"/>
     <elementParameter field="CHECK" name="ADVANCED_SEPARATOR" value="false"/>
     <elementParameter field="TEXT" name="THOUSANDS_SEPARATOR" value="&quot;,&quot;" show="false"/>
@@ -717,77 +723,6 @@
       <column comment="" key="false" length="-1" name="nama_kategori" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tCassandraOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="384">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tCassandraOutput_1" show="false"/>
-    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="cassandra22_datastax_id" show="false"/>
-    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
-    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tCassandraConnection_1"/>
-    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="CASSANDRA_3_0" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="API_TYPE" value="DATASTAX" show="false"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
-    <elementParameter field="TEXT" name="PORT" value="&quot;9042&quot;" show="false"/>
-    <elementParameter field="CHECK" name="REQUIRED_AUTHENTICATION" value="false" show="false"/>
-    <elementParameter field="TEXT" name="USERNAME" value="&quot;&quot;" show="false"/>
-    <elementParameter field="PASSWORD" name="PASSWORD" value="0RMsyjmybrE=" show="false"/>
-    <elementParameter field="CHECK" name="USE_HTTPS" value="false" show="false"/>
-    <elementParameter field="COMPONENT_LIST" name="HTTPS_SETTING" value="" show="false"/>
-    <elementParameter field="TEXT" name="KEY_SPACE" value="&quot;skripsi&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="ACTION_ON_KEYSPACE" value="NONE"/>
-    <elementParameter field="CLOSED_LIST" name="REPLICA_STRATEGY" value="NetworkTopologyStrategy" show="false"/>
-    <elementParameter field="TEXT" name="SIMEPLE_REPLICA_NUMBER" value="3" show="false"/>
-    <elementParameter field="TABLE" name="NETWORK_REPLICA_TABLE" show="false"/>
-    <elementParameter field="TEXT" name="COLUMN_FAMILY" value="&quot;cf_transaksi_jurusan_kategori&quot;"/>
-    <elementParameter field="CLOSED_LIST" name="COLUMN_FAMILY_TYPE" value="STANDARD" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="ACTION_ON_COLUMN_FAMILY" value="NONE"/>
-    <elementParameter field="CHECK" name="DEFINE_CF_STRUCTS" value="true" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="COMPARATOR" value="AsciiType" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="UPSERT" show="false"/>
-    <elementParameter field="COLUMN_LIST" name="KEY_COLUMN" value="id_transaksi" show="false"/>
-    <elementParameter field="CHECK" name="INC_KEY" value="true" show="false"/>
-    <elementParameter field="COLUMN_LIST" name="SUPER_KEY_COLUMN" value="id_transaksi" show="false"/>
-    <elementParameter field="CHECK" name="INC_SUPER_KEY" value="true" show="false"/>
-    <elementParameter field="CHECK" name="DELETE_ROW" value="false" show="false"/>
-    <elementParameter field="CHECK" name="DELETE_SUPER_COLUMN" value="false" show="false"/>
-    <elementParameter field="TABLE" name="DELETE_COLUMNS" show="false"/>
-    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
-    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false" show="false"/>
-    <elementParameter field="CHECK" name="USE_UNLOGGED_BATCH" value="true"/>
-    <elementParameter field="TEXT" name="BATCH_SIZE" value="1000"/>
-    <elementParameter field="CLOSED_LIST" name="GROUP_METHOD" value="PARTITION"/>
-    <elementParameter field="CHECK" name="GROUP_CACHE" value="false"/>
-    <elementParameter field="CHECK" name="ASYNC" value="true"/>
-    <elementParameter field="TEXT" name="CONCURRENT_TASKS" value="5"/>
-    <elementParameter field="CHECK" name="INSERT_IF_NOT_EXISTS" value="false"/>
-    <elementParameter field="CHECK" name="DELETE_IF_EXISTS" value="false" show="false"/>
-    <elementParameter field="CHECK" name="USING_TTL" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="TTL" value="id_transaksi" show="false"/>
-    <elementParameter field="CHECK" name="USING_TIMESTAMP" value="false"/>
-    <elementParameter field="COLUMN_LIST" name="TIMESTAMP" value="id_transaksi" show="false"/>
-    <elementParameter field="TABLE" name="IF_CONDITION" show="false"/>
-    <elementParameter field="TABLE" name="ASSIGNMENT_OPERATION" show="false"/>
-    <elementParameter field="TABLE" name="DELETE_COLUMN_BY_POSITION_KEY" show="false"/>
-    <elementParameter field="TABLE" name="ROW_KEY_IN_LIST" show="false"/>
-    <elementParameter field="TEXT" name="LABEL" value="cf_transaksi_jurusan_kategori"/>
-    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
-    <metadata connector="FLOW" name="tCassandraOutput_1">
-      <column comment="" defaultValue="" key="false" length="19" name="id_transaksi" nullable="false" pattern="" precision="0" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="tgl_pinjam" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="tgl_batas" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="tgl_kembali" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="17" name="denda" nullable="true" pattern="" precision="17" sourceType="double" type="id_Double" originalLength="-1" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="17" name="terbayar" nullable="true" pattern="" precision="17" sourceType="double" type="id_Double" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="kode_buku" nullable="true" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" defaultValue="" key="false" length="19" name="kode_judul" nullable="true" pattern="" precision="0" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="status" nullable="true" originalDbColumnName="status_sekarang" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="judul" nullable="true" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="nama_jurusan" nullable="false" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="nama_kategori" nullable="false" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="nama_koleksi" nullable="false" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tahun" nullable="false" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="uuid" type="id_String" originalLength="-1" usefulColumn="true"/>
-    </metadata>
-  </node>
   <node componentName="tFileInputDelimited" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileInputDelimited_3" show="false"/>
     <elementParameter field="LABEL" name="FILENAMETEXT" value="&quot;When the input source is a stream or a zip file,footer and random shouldn't be bigger than 0.&quot;"/>
@@ -842,6 +777,79 @@
       <column comment="" key="false" length="-1" name="kondisi" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+    </metadata>
+  </node>
+  <node componentName="tCassandraOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="736" posY="384">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="tCassandraOutput_1" show="false"/>
+    <elementParameter field="CHECK" name="TSTATCATCHER_STATS" value="true"/>
+    <elementParameter field="MAPPING_TYPE" name="MAPPING" value="cassandra22_datastax_id" show="false"/>
+    <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
+    <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tCassandraConnection_1"/>
+    <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="CASSANDRA_3_0" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="API_TYPE" value="DATASTAX" show="false"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;" show="false"/>
+    <elementParameter field="TEXT" name="PORT" value="&quot;9042&quot;" show="false"/>
+    <elementParameter field="CHECK" name="REQUIRED_AUTHENTICATION" value="false" show="false"/>
+    <elementParameter field="TEXT" name="USERNAME" value="&quot;&quot;" show="false"/>
+    <elementParameter field="PASSWORD" name="PASSWORD" value="0RMsyjmybrE=" show="false"/>
+    <elementParameter field="CHECK" name="USE_HTTPS" value="false" show="false"/>
+    <elementParameter field="COMPONENT_LIST" name="HTTPS_SETTING" value="" show="false"/>
+    <elementParameter field="TEXT" name="KEY_SPACE" value="&quot;skripsi&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_KEYSPACE" value="NONE"/>
+    <elementParameter field="CLOSED_LIST" name="REPLICA_STRATEGY" value="NetworkTopologyStrategy" show="false"/>
+    <elementParameter field="TEXT" name="SIMEPLE_REPLICA_NUMBER" value="3" show="false"/>
+    <elementParameter field="TABLE" name="NETWORK_REPLICA_TABLE" show="false"/>
+    <elementParameter field="TEXT" name="COLUMN_FAMILY" value="&quot;cf_transaksi_jurusan_kategori&quot;"/>
+    <elementParameter field="CLOSED_LIST" name="COLUMN_FAMILY_TYPE" value="STANDARD" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_COLUMN_FAMILY" value="NONE"/>
+    <elementParameter field="CHECK" name="DEFINE_CF_STRUCTS" value="true" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="COMPARATOR" value="AsciiType" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="ACTION_ON_DATA" value="UPSERT" show="false"/>
+    <elementParameter field="COLUMN_LIST" name="KEY_COLUMN" value="id_transaksi" show="false"/>
+    <elementParameter field="CHECK" name="INC_KEY" value="true" show="false"/>
+    <elementParameter field="COLUMN_LIST" name="SUPER_KEY_COLUMN" value="id_transaksi" show="false"/>
+    <elementParameter field="CHECK" name="INC_SUPER_KEY" value="true" show="false"/>
+    <elementParameter field="CHECK" name="DELETE_ROW" value="false" show="false"/>
+    <elementParameter field="CHECK" name="DELETE_SUPER_COLUMN" value="false" show="false"/>
+    <elementParameter field="TABLE" name="DELETE_COLUMNS" show="false"/>
+    <elementParameter field="CLOSED_LIST" name="DATA_ACTION" value="INSERT"/>
+    <elementParameter field="CHECK" name="DIE_ON_ERROR" value="true" show="false"/>
+    <elementParameter field="CHECK" name="USE_UNLOGGED_BATCH" value="true"/>
+    <elementParameter field="TEXT" name="BATCH_SIZE" value="1000"/>
+    <elementParameter field="CLOSED_LIST" name="GROUP_METHOD" value="PARTITION"/>
+    <elementParameter field="CHECK" name="GROUP_CACHE" value="false"/>
+    <elementParameter field="CHECK" name="ASYNC" value="true"/>
+    <elementParameter field="TEXT" name="CONCURRENT_TASKS" value="5"/>
+    <elementParameter field="CHECK" name="INSERT_IF_NOT_EXISTS" value="false"/>
+    <elementParameter field="CHECK" name="DELETE_IF_EXISTS" value="false" show="false"/>
+    <elementParameter field="CHECK" name="USING_TTL" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="TTL" value="id_transaksi" show="false"/>
+    <elementParameter field="CHECK" name="USING_TIMESTAMP" value="false"/>
+    <elementParameter field="COLUMN_LIST" name="TIMESTAMP" value="id_transaksi" show="false"/>
+    <elementParameter field="TABLE" name="IF_CONDITION" show="false"/>
+    <elementParameter field="TABLE" name="ASSIGNMENT_OPERATION" show="false"/>
+    <elementParameter field="TABLE" name="DELETE_COLUMN_BY_POSITION_KEY" show="false"/>
+    <elementParameter field="TABLE" name="ROW_KEY_IN_LIST" show="false"/>
+    <elementParameter field="TEXT" name="LABEL" value="cf_transaksi_jurusan_kategori"/>
+    <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <metadata connector="FLOW" name="tCassandraOutput_1">
+      <column comment="" defaultValue="" key="false" length="19" name="id_transaksi" nullable="false" pattern="" precision="0" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="tgl_pinjam" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="tgl_batas" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="tgl_kembali" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="17" name="denda" nullable="true" pattern="" precision="17" sourceType="double" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="17" name="terbayar" nullable="true" pattern="" precision="17" sourceType="double" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="kode_buku" nullable="true" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" defaultValue="" key="false" length="19" name="kode_judul" nullable="true" pattern="" precision="0" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="status" nullable="true" originalDbColumnName="status_sekarang" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="judul" nullable="true" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="nama_jurusan" nullable="false" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="nama_kategori" nullable="false" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="2147483647" name="nama_koleksi" nullable="false" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun" nullable="false" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="uuid" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tCassandraConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="128">
@@ -1026,11 +1034,10 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJava_1"/>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="640">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="704" posY="512">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_4" show="false"/>
     <elementParameter field="CHECK" name="ACTIVATE" value="false"/>
-    <elementParameter field="CHECK" name="DUMMY" value="true" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(out1.id_transaksi);&#xA;&#xA;row16.nama_jurusan =out1.nama_jurusan; &#xA;row16.tahun =out1.tahun; &#xA;row16.tgl_pinjam =out1.tgl_pinjam; &#xA;row16.nama_kategori =out1.nama_kategori; &#xA;row16.id_transaksi =out1.id_transaksi; &#xA;&#xA;row16.fakultas =out1.fakultas; &#xA;row16.tgl_batas =out1.tgl_batas; &#xA;row16.tgl_kembali =out1.tgl_kembali; &#xA;row16.kode_buku =out1.kode_buku; &#xA;row16.kode_judul =out1.kode_judul; &#xA;&#xA;row16.judul =out1.judul; &#xA;row16.nama_koleksi =out1.nama_koleksi; &#xA;row16.status =out1.status; &#xA;row16.denda =out1.denda; &#xA;row16.terbayar =out1.terbayar;&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//System.out.println(Integer.toString(out1.id_transaksi)+&quot; &quot;+Integer.toString(out1.k099a));&#xA;&#xA;row17.nama_jurusan =out1.nama_jurusan; &#xA;row17.tahun =out1.tahun; &#xA;row17.tgl_pinjam =out1.tgl_pinjam; &#xA;row17.nama_kategori =out1.nama_kategori; &#xA;row17.id_transaksi =out1.id_transaksi; &#xA;&#xA;row17.fakultas =out1.fakultas; &#xA;row17.tgl_batas =out1.tgl_batas; &#xA;row17.tgl_kembali =out1.tgl_kembali; &#xA;row17.kode_buku =out1.kode_buku; &#xA;row17.kode_judul =out1.kode_judul; &#xA;&#xA;row17.judul =out1.judul; &#xA;row17.nama_koleksi =out1.nama_koleksi; &#xA;row17.status =out1.status; &#xA;row17.denda =out1.denda; &#xA;row17.terbayar =out1.terbayar;&#xA;&#xA;row17.unique_id=out1.unique_id;&#xA;row17.kode_anggota=out1.unique_id;&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_4">
@@ -1040,15 +1047,17 @@
       <column comment="" key="false" length="2147483647" name="tgl_kembali" nullable="false" pattern="&quot;dd-MM-yyyy&quot;" precision="0" sourceType="VARCHAR" type="id_Date" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="denda" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="kode_buku" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="19" name="kode_judul" nullable="true" pattern="" precision="0" sourceType="INT8" type="id_Integer" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="2147483647" name="status" nullable="false" originalDbColumnName="status_sekarang" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="judul" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="nama_jurusan" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="nama_kategori" nullable="false" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="nama_koleksi" nullable="false" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tahun" nullable="false" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="status" nullable="true" originalDbColumnName="status_sekarang" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tDBConnection_1" offsetLabelX="0" offsetLabelY="0" source="tDBConnection_1" target="tDBInput_1">
@@ -1066,16 +1075,14 @@
       <elementValue elementRef="TRACE_COLUMN" value="unique_id"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row6" show="false"/>
   </connection>
   <connection connectorName="FLOW" label="out1" lineStyle="0" metaname="out1" offsetLabelX="0" offsetLabelY="0" source="tMap_2" target="tCassandraOutput_1">
-    <elementParameter field="TABLE" name="TRACES_CONNECTION_FILTER" show="false">
-      <elementValue elementRef="TRACE_COLUMN" value="unique_id"/>
-      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
-      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-    </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="out1" show="false"/>
   </connection>

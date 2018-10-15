@@ -52,10 +52,15 @@ public class data_checker {
 		Integer hasil=0;
 		try{
 			Integer calc=(int)Math.floor(Double.valueOf(initial));
-			if(calc>=10){
+			if(calc>=10 && calc<=1000){//no known values for below or above this range
 				calc=calc-(calc%10);
 			}
-			hasil= calc%100!=0? calc:0; //there are no code for 100, 200, etc
+			else calc=0;
+			
+			if(calc%100!=0){
+				hasil=calc;
+			}
+			else hasil=0;//there are no code for 100, 200, etc
 		}
 		catch(Exception e){
 			hasil=0;
@@ -64,7 +69,12 @@ public class data_checker {
 	}
 	
 	public static String computeJenisUsul(String initial){
-		return (initial!=null && !initial.equals(""))?initial:"u";//umum
+		//null value
+		//or empty string
+		//or space only
+		return (initial!=null && 
+				!initial.equals("") && 
+				!initial.equals(" "))? initial:"u";//umum
 	}
 
 	public static Integer computeKodeStatus(Integer initial){

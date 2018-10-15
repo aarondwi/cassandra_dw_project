@@ -109,7 +109,7 @@
   <node componentName="tPostgresqlConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="192" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBConnection_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="V9_X"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;192.168.38.9&quot;"/>
     <elementParameter field="TEXT" name="TYPE" value="PostgreSQL" show="false"/>
     <elementParameter field="TEXT" name="PORT" value="&quot;5432&quot;"/>
     <elementParameter field="TEXT" name="DBNAME" value="&quot;skripsi&quot;"/>
@@ -188,9 +188,9 @@
       <column comment="" defaultValue="" key="false" length="17" name="Terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="320" posY="256">
+  <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="288" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//no change here&#xA;row2.fntranscid=row1.fntranscid;&#xA;row2.Denda=row1.Denda;&#xA;row2.Terbayar=row1.Terbayar;&#xA;row2.fckd_operator=row1.fckd_operator;&#xA;row2.k999a=row1.k999a;&#xA;&#xA;row2.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row2.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row2.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row2.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;&#xA;/*SimpleDateFormat dt=new SimpleDateFormat(&quot;MM/dd/yyyy&quot;);&#xA;//dt error here means wrong input data, e.g. 15:37.5 or is null&#xA;try{&#xA;&#x9;row2.fdtgl_pinjam=dt.parse(row1.fdtgl_pinjam.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row2.fdtgl_pinjam=dt.parse(&quot;01/01/0001&quot;);}&#xA;&#xA;try{&#xA;&#x9;row2.fdtgl_batas=dt.parse(row1.fdtgl_batas.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row2.fdtgl_batas=dt.parse(&quot;01/01/0001&quot;);}&#xA;&#xA;try{&#xA;&#x9;row2.fdtgl_kembali=dt.parse(row1.fdtgl_kembali.split(&quot; &quot;)[0]);&#xA;}&#xA;catch(Exception e){row2.fdtgl_kembali=dt.parse(&quot;01/01/0001&quot;);}*/&#xA;&#xA;//number only means a student&#xA;/*if(row1.fckd_induk.matches(&quot;[0-9]+&quot;) &amp;&amp; row1.fckd_induk.length()==8){&#xA;&#x9;row2.fckd_induk=Integer.valueOf(row1.fckd_induk.substring(0,3));&#xA;}&#xA;else{//means an employee&#xA;&#x9;row2.fckd_induk=0;&#xA;}*/&#xA;&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//no change here&#xA;row2.fntranscid=row1.fntranscid;&#xA;row2.Denda=row1.Denda;&#xA;row2.Terbayar=row1.Terbayar;&#xA;row2.fckd_operator=row1.fckd_operator;&#xA;row2.k999a=row1.k999a;&#xA;&#xA;row2.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row2.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row2.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row2.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row2.kode_anggota=row1.fckd_induk;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="parse date,jurusan"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -204,9 +204,10 @@
       <column comment="" key="false" length="2147483647" name="fckd_operator" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="Denda" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="Terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="480" posY="256">
+  <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="416" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tMap_1" show="false"/>
     <elementParameter field="EXTERNAL" name="MAP" value=""/>
     <elementParameter field="CLOSED_LIST" name="LINK_STYLE" value="AUTO"/>
@@ -230,6 +231,7 @@
       <column comment="" defaultValue="" key="false" length="10" name="buku_dim_key" nullable="true" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="jurusan_key" nullable="false" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="date_key_2" nullable="true" originalDbColumnName="tgl_kembali_key" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
       <uiProperties/>
@@ -243,6 +245,7 @@
         <mapperTableEntries name="buku_dim_key" expression="row5.buku_dim_key " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="jurusan_key" expression="row7.jurusan_key " type="id_Integer"/>
         <mapperTableEntries name="date_key_2" expression="row6.date_key " type="id_Integer" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" expression="row2.kode_anggota " type="id_String" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row2" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="fntranscid" type="id_Long" nullable="true"/>
@@ -254,6 +257,7 @@
         <mapperTableEntries name="fckd_operator" type="id_String" nullable="true"/>
         <mapperTableEntries name="Denda" type="id_Double" nullable="true"/>
         <mapperTableEntries name="Terbayar" type="id_Double" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" type="id_String" nullable="true"/>
       </inputTables>
       <inputTables sizeState="INTERMEDIATE" name="row3" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="date_key" expression="" type="id_Integer"/>
@@ -279,7 +283,7 @@
       </inputTables>
     </nodeData>
   </node>
-  <node componentName="tPostgresqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="608" posY="256">
+  <node componentName="tPostgresqlOutput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="544" posY="256">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBOutput_1" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
@@ -349,6 +353,11 @@
       <elementValue elementRef="DELETE_KEY" value="false"/>
       <elementValue elementRef="UPDATABLE" value="true"/>
       <elementValue elementRef="INSERTABLE" value="true"/>
+      <elementValue elementRef="SCHEMA_COLUMN" value="kode_anggota"/>
+      <elementValue elementRef="UPDATE_KEY" value="false"/>
+      <elementValue elementRef="DELETE_KEY" value="false"/>
+      <elementValue elementRef="UPDATABLE" value="true"/>
+      <elementValue elementRef="INSERTABLE" value="true"/>
     </elementParameter>
     <elementParameter field="CHECK" name="ENABLE_DEBUG_MODE" value="false"/>
     <elementParameter field="CHECK" name="SUPPORT_NULL_WHERE" value="false"/>
@@ -365,6 +374,7 @@
       <column comment="" defaultValue="" key="false" length="10" name="buku_dim_key" nullable="true" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="jurusan_key" nullable="false" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="date_key_2" nullable="true" originalDbColumnName="tgl_kembali_key" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <metadata connector="REJECT" label="load" name="REJECT">
       <column comment="" defaultValue="" key="false" length="19" name="fntranscid" nullable="true" originalDbColumnName="id_transaksi" pattern="" precision="0" sourceType="INT8" type="id_Long" originalLength="-1" usefulColumn="true"/>
@@ -375,6 +385,7 @@
       <column comment="" defaultValue="" key="false" length="10" name="buku_dim_key" nullable="true" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="jurusan_key" nullable="false" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="10" name="date_key_2" nullable="true" originalDbColumnName="tgl_kembali_key" pattern="" precision="0" sourceType="INT4" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorCode" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column defaultValue="" key="false" length="255" name="errorMessage" nullable="true" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
@@ -459,7 +470,7 @@
       <column comment="" key="false" length="13" name="tanggal" nullable="true" pattern="" precision="0" sourceType="TIMESTAMP" type="id_Date" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="480" posY="448">
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="416" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_3" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
@@ -539,7 +550,7 @@
       <column comment="" key="false" length="13" name="tanggal" nullable="true" pattern="" precision="0" sourceType="TIMESTAMP" type="id_Date" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="352" posY="448">
+  <node componentName="tPostgresqlInput" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="320" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBInput_6" show="false"/>
     <elementParameter field="CHECK" name="USE_EXISTING_CONNECTION" value="true"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
@@ -585,7 +596,7 @@
       <column comment="" key="false" length="2147483647" name="fakultas" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tPostgresqlCommit" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="736" posY="448">
+  <node componentName="tPostgresqlCommit" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="672" posY="448">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tDBCommit_1" show="false"/>
     <elementParameter field="COMPONENT_LIST" name="CONNECTION" value="tDBConnection_1"/>
     <elementParameter field="CHECK" name="CLOSE" value="true"/>
@@ -652,6 +663,9 @@
       <elementValue elementRef="TRACE_COLUMN" value="status"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row2" show="false"/>
@@ -689,6 +703,9 @@
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="fntranscid"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>

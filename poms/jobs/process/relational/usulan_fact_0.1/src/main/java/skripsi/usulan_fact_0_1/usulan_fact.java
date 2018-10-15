@@ -932,8 +932,8 @@ public class usulan_fact implements TalendJob {
 
 				new BytesLimit65535_tDBConnection_1().limitLog4jByte();
 
-				String url_tDBConnection_1 = "jdbc:postgresql://" + "" + ":"
-						+ "5432" + "/" + "skripsi";
+				String url_tDBConnection_1 = "jdbc:postgresql://"
+						+ "192.168.38.9" + ":" + "5432" + "/" + "skripsi";
 
 				String dbUser_tDBConnection_1 = "skripsiuser";
 
@@ -1133,6 +1133,12 @@ public class usulan_fact implements TalendJob {
 			return this.penerbit;
 		}
 
+		public String kode_anggota;
+
+		public String getKode_anggota() {
+			return this.kode_anggota;
+		}
+
 		private String readString(ObjectInputStream dis) throws IOException {
 			String strReturn = null;
 			int length = 0;
@@ -1217,6 +1223,8 @@ public class usulan_fact implements TalendJob {
 
 					this.penerbit = readString(dis);
 
+					this.kode_anggota = readString(dis);
+
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 
@@ -1266,6 +1274,10 @@ public class usulan_fact implements TalendJob {
 
 				writeString(this.penerbit, dos);
 
+				// String
+
+				writeString(this.kode_anggota, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -1285,6 +1297,7 @@ public class usulan_fact implements TalendJob {
 			sb.append(",jenis_usul=" + jenis_usul);
 			sb.append(",status=" + status);
 			sb.append(",penerbit=" + penerbit);
+			sb.append(",kode_anggota=" + kode_anggota);
 			sb.append("]");
 
 			return sb.toString();
@@ -1375,6 +1388,12 @@ public class usulan_fact implements TalendJob {
 
 		public Integer getKode_status() {
 			return this.kode_status;
+		}
+
+		public String kode_anggota;
+
+		public String getKode_anggota() {
+			return this.kode_anggota;
 		}
 
 		private java.util.Date readDate(ObjectInputStream dis)
@@ -1484,6 +1503,8 @@ public class usulan_fact implements TalendJob {
 
 					this.kode_status = readInteger(dis);
 
+					this.kode_anggota = readString(dis);
+
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 
@@ -1533,6 +1554,10 @@ public class usulan_fact implements TalendJob {
 
 				writeInteger(this.kode_status, dos);
 
+				// String
+
+				writeString(this.kode_anggota, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -1552,6 +1577,7 @@ public class usulan_fact implements TalendJob {
 			sb.append(",penerbit=" + penerbit);
 			sb.append(",jenis_usul=" + jenis_usul);
 			sb.append(",kode_status=" + String.valueOf(kode_status));
+			sb.append(",kode_anggota=" + kode_anggota);
 			sb.append("]");
 
 			return sb.toString();
@@ -2175,7 +2201,7 @@ public class usulan_fact implements TalendJob {
 				int count_tDBOutput_1 = 0;
 				String insert_tDBOutput_1 = "INSERT INTO \""
 						+ tableName_tDBOutput_1
-						+ "\" (\"id_usul\",\"judul\",\"pengarang\",\"tgl_key\",\"jurusan_key\",\"jenis_usul\",\"status\",\"penerbit\") VALUES (?,?,?,?,?,?,?,?)";
+						+ "\" (\"id_usul\",\"judul\",\"pengarang\",\"tgl_key\",\"jurusan_key\",\"jenis_usul\",\"status\",\"penerbit\",\"kode_anggota\") VALUES (?,?,?,?,?,?,?,?,?)";
 
 				java.sql.PreparedStatement pstmt_tDBOutput_1 = conn_tDBOutput_1
 						.prepareStatement(insert_tDBOutput_1);
@@ -2449,35 +2475,8 @@ public class usulan_fact implements TalendJob {
 								.computePenerbitStr(row1.penerbit);
 						row2.fckd_induk = data_checker
 								.computeJurusan(row1.fckd_induk);
+						row2.kode_anggota = row1.fckd_induk;
 						row2.tgl = data_checker.computeDate(row1.tgl);
-
-						/*
-						 * if(row1.jenis_usul!=null){
-						 * row2.jenis_usul=row1.jenis_usul; } else {
-						 * row2.jenis_usul="u"; }
-						 * 
-						 * if(row1.kode_status!=null){
-						 * row2.kode_status=row1.kode_status; } else {
-						 * row2.kode_status=1; }//belum disetujui
-						 * 
-						 * //null penerbit is unknown if(row1.penerbit==null ||
-						 * row1.penerbit.equals("")){ row2.penerbit="unknown"; }
-						 * else row2.penerbit=row1.penerbit;
-						 * 
-						 * //number only means a student
-						 * if(row1.fckd_induk.matches("[0-9]+") &&
-						 * row1.fckd_induk.length()==8){
-						 * row2.fckd_induk=Integer.
-						 * valueOf(row1.fckd_induk.substring(0,3)); }
-						 * else{//means an employee row2.fckd_induk=0; }
-						 * 
-						 * //error here means wrong input data, e.g. 15:37.5
-						 * SimpleDateFormat dt=new
-						 * SimpleDateFormat("MM/dd/yyyy"); try{
-						 * row2.tgl=dt.parse(row1.tgl.split(" ")[0]); }
-						 * catch(Exception e){ row2.tgl=dt.parse("01/01/0001");
-						 * }
-						 */
 						nb_line_tJavaRow_1++;
 
 						tos_count_tJavaRow_1++;
@@ -2714,6 +2713,7 @@ public class usulan_fact implements TalendJob {
 							load_tmp.jenis_usul = row6.jenis_usul;
 							load_tmp.status = row7.status_usul;
 							load_tmp.penerbit = row2.penerbit;
+							load_tmp.kode_anggota = row2.kode_anggota;
 							load = load_tmp;
 							// ###############################
 
@@ -2808,6 +2808,14 @@ public class usulan_fact implements TalendJob {
 										java.sql.Types.VARCHAR);
 							} else {
 								pstmt_tDBOutput_1.setString(8, load.penerbit);
+							}
+
+							if (load.kode_anggota == null) {
+								pstmt_tDBOutput_1.setNull(9,
+										java.sql.Types.VARCHAR);
+							} else {
+								pstmt_tDBOutput_1.setString(9,
+										load.kode_anggota);
 							}
 
 							pstmt_tDBOutput_1.addBatch();
@@ -6090,6 +6098,6 @@ public class usulan_fact implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 162773 characters generated by Talend Open Studio for Big Data on the October
- * 8, 2018 10:06:25 AM ICT
+ * 162852 characters generated by Talend Open Studio for Big Data on the October
+ * 15, 2018 6:24:38 PM ICT
  ************************************************************************************************/
