@@ -327,7 +327,7 @@
       <column comment="" key="false" length="-1" name="kondisi" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties shellMaximized="true"/>
+      <uiProperties/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="out1">
         <mapperTableEntries name="key" expression="row5.key " type="id_String" nullable="true"/>
@@ -454,15 +454,15 @@
     <elementParameter field="TEXT" name="COLUMN_START" value="" show="false"/>
     <elementParameter field="TEXT" name="COLUMN_END" value="" show="false"/>
     <elementParameter field="TEXT" name="COLUMN_LIMIT" value="1000" show="false"/>
-    <elementParameter field="MEMO" name="QUERY" value="&quot;select nama_jurusan, tahun, tgl_pinjam, nama_kategori, nama_koleksi, unique_id, status_sekarang,kode_buku from skripsi.cf_transaksi_jurusan_kategori where kode_buku in (&quot;+ globalMap.get(&quot;ids_str&quot;) +&quot;) allow filtering&quot;"/>
+    <elementParameter field="MEMO" name="QUERY" value="&quot;select nama_jurusan, tahun_ajaran, tgl_pinjam, kelompok_kategori, nama_koleksi, unique_id, status_sekarang,kode_buku from skripsi.cf_transaksi_jurusan_kategori where kode_buku in (&quot;+ globalMap.get(&quot;ids_str&quot;) +&quot;) allow filtering&quot;"/>
     <elementParameter field="TEXT" name="LABEL" value="read from cf_transaksi_jurusan_kategori"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tCassandraInput_2">
       <column comment="" key="false" length="-1" name="status_sekarang" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="nama_jurusan" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tahun" nullable="true" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tgl_pinjam" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="nama_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kelompok_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="nama_koleksi" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="uuid" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="kode_buku" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
@@ -470,15 +470,15 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="352" posY="416">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_3" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//new data&#xA;row7.status_lama=row6.status_sekarang;&#xA;row7.tanggal_status_ganti=&#xA;&#x9;((buku_scd_data)globalMap.get(row6.kode_buku)).tanggal_update;&#xA;row7.status_sekarang=&#xA;&#x9;((buku_scd_data)globalMap.get(row6.kode_buku)).status_sekarang;&#xA;&#x9;&#xA;//primary key purpose&#xA;row7.nama_jurusan=row6.nama_jurusan;&#xA;row7.tahun=row6.tahun;&#xA;row7.tgl_pinjam=row6.tgl_pinjam;&#xA;row7.nama_kategori=row6.nama_kategori;&#xA;row7.nama_koleksi=row6.nama_koleksi;&#xA;row7.unique_id=row6.unique_id;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//new data&#xA;row7.status_lama=row6.status_sekarang;&#xA;row7.tanggal_status_ganti=&#xA;&#x9;((buku_scd_data)globalMap.get(row6.kode_buku)).tanggal_update;&#xA;row7.status_sekarang=&#xA;&#x9;((buku_scd_data)globalMap.get(row6.kode_buku)).status_sekarang;&#xA;&#x9;&#xA;//primary key purpose&#xA;row7.nama_jurusan=row6.nama_jurusan;&#xA;row7.tahun_ajaran=row6.tahun_ajaran;&#xA;row7.tgl_pinjam=row6.tgl_pinjam;&#xA;row7.kelompok_kategori=row6.kelompok_kategori;&#xA;row7.nama_koleksi=row6.nama_koleksi;&#xA;row7.unique_id=row6.unique_id;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="set new status"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tJavaRow_3">
       <column comment="" key="false" length="-1" name="nama_jurusan" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tahun" nullable="true" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tgl_pinjam" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="nama_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kelompok_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="nama_koleksi" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="int" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tanggal_status_ganti" nullable="true" originalDbColumnName="tanggal_ganti_status" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="" type="id_Date" originalLength="-1" usefulColumn="true"/>
@@ -542,9 +542,9 @@
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
     <metadata connector="FLOW" name="tCassandraOutput_2">
       <column comment="" key="false" length="-1" name="nama_jurusan" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="tahun" nullable="true" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tgl_pinjam" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="nama_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kelompok_kategori" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="nama_koleksi" nullable="true" pattern="" precision="-1" sourceType="text" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="uuid" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="tanggal_status_ganti" nullable="true" originalDbColumnName="tanggal_ganti_status" pattern="&quot;dd-MM-yyyy&quot;" precision="-1" sourceType="date" type="id_Date" originalLength="-1" usefulColumn="true"/>
@@ -694,7 +694,7 @@
       <elementValue elementRef="TRACE_COLUMN" value="nama_jurusan"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="tahun"/>
+      <elementValue elementRef="TRACE_COLUMN" value="tahun_ajaran"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="nama_koleksi"/>
@@ -706,7 +706,7 @@
       <elementValue elementRef="TRACE_COLUMN" value="tgl_pinjam"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
-      <elementValue elementRef="TRACE_COLUMN" value="nama_kategori"/>
+      <elementValue elementRef="TRACE_COLUMN" value="kelompok_kategori"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
@@ -749,6 +749,12 @@
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="nama_kategori"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="tahun_ajaran"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="kelompok_kategori"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>

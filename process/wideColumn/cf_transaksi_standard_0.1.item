@@ -191,7 +191,7 @@
   </node>
   <node componentName="tJavaRow" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="256" posY="224">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tJavaRow_1" show="false"/>
-    <elementParameter field="MEMO_JAVA" name="CODE" value="//no change here&#xA;row4.fntranscid=row1.fntranscid;&#xA;row4.Denda=row1.Denda;&#xA;row4.Terbayar=row1.Terbayar;&#xA;row4.fckd_operator=row1.fckd_operator;&#xA;row4.k999a=row1.k999a;&#xA;&#xA;row4.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row4.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row4.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row4.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row4.unique_id=UUID.randomUUID().toString();&#xA;row4.kode_anggota=row1.fckd_induk;&#xA;"/>
+    <elementParameter field="MEMO_JAVA" name="CODE" value="//no change here&#xA;row4.fntranscid=row1.fntranscid;&#xA;row4.Denda=row1.Denda;&#xA;row4.Terbayar=row1.Terbayar;&#xA;row4.fckd_operator=row1.fckd_operator;&#xA;row4.k999a=row1.k999a;&#xA;&#xA;row4.fckd_induk=data_checker.computeJurusan(row1.fckd_induk);&#xA;row4.fdtgl_pinjam=data_checker.computeDate(row1.fdtgl_pinjam);&#xA;row4.fdtgl_batas=data_checker.computeDate(row1.fdtgl_batas);&#xA;row4.fdtgl_kembali=data_checker.computeDate(row1.fdtgl_kembali);&#xA;row4.unique_id=UUID.randomUUID().toString();&#xA;row4.kode_anggota=row1.fckd_induk;&#xA;row4.tahun_ajaran=data_checker.computeTahunAjaran(row1.fdtgl_pinjam);&#xA;row4.semester=data_checker.computeSemester(row1.fdtgl_pinjam);&#xA;"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="LABEL" value="parse date,jurusan"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
@@ -207,6 +207,8 @@
       <column comment="" defaultValue="" key="false" length="17" name="Terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="semester" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tMap" componentVersion="2.1" offsetLabelX="0" offsetLabelY="0" posX="416" posY="288">
@@ -232,12 +234,14 @@
       <column comment="" defaultValue="" key="false" length="17" name="denda" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" defaultValue="" key="false" length="17" name="terbayar" nullable="true" pattern="" precision="17" sourceType="FLOAT8" type="id_Double" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="unique_id" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="semester" nullable="true" pattern="" precision="-1" sourceType="" type="id_Integer" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="2147483647" name="nama_jurusan" nullable="true" pattern="" precision="0" sourceType="VARCHAR" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
-      <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="" type="id_String" originalLength="-1" usefulColumn="true"/>
     </metadata>
     <nodeData xsi:type="TalendMapper:MapperData">
-      <uiProperties/>
+      <uiProperties shellMaximized="true"/>
       <varTables sizeState="INTERMEDIATE" name="Var" minimized="true"/>
       <outputTables sizeState="INTERMEDIATE" name="out1">
         <mapperTableEntries name="id_transaksi" expression="row4.fntranscid " type="id_Integer" nullable="true"/>
@@ -247,9 +251,11 @@
         <mapperTableEntries name="denda" expression="row4.Denda " type="id_Double" nullable="true"/>
         <mapperTableEntries name="terbayar" expression="row4.Terbayar" type="id_Double" nullable="true"/>
         <mapperTableEntries name="unique_id" expression="row4.unique_id " type="id_String" nullable="true"/>
+        <mapperTableEntries name="kode_anggota" expression="row4.kode_anggota " type="id_String" nullable="true"/>
+        <mapperTableEntries name="tahun_ajaran" expression="row4.tahun_ajaran " type="id_String" nullable="true"/>
+        <mapperTableEntries name="semester" expression="row4.semester " type="id_Integer" nullable="true"/>
         <mapperTableEntries name="nama_jurusan" expression="row5.nama_jurusan " type="id_String" nullable="true"/>
         <mapperTableEntries name="fakultas" expression="row5.fakultas " type="id_String" nullable="true"/>
-        <mapperTableEntries name="kode_anggota" expression="row4.kode_anggota " type="id_String" nullable="true"/>
       </outputTables>
       <inputTables sizeState="INTERMEDIATE" name="row4" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="fntranscid" type="id_Integer" nullable="true"/>
@@ -263,6 +269,8 @@
         <mapperTableEntries name="Terbayar" type="id_Double" nullable="true"/>
         <mapperTableEntries name="unique_id" type="id_String" nullable="true"/>
         <mapperTableEntries name="kode_anggota" type="id_String" nullable="true"/>
+        <mapperTableEntries name="tahun_ajaran" type="id_String" nullable="true"/>
+        <mapperTableEntries name="semester" type="id_Integer" nullable="true"/>
       </inputTables>
       <inputTables sizeState="INTERMEDIATE" name="row5" matchingMode="UNIQUE_MATCH" lookupMode="LOAD_ONCE">
         <mapperTableEntries name="kode_jurusan" expression="row4.fckd_induk " type="id_Integer" operator="="/>
@@ -437,6 +445,8 @@
       <column comment="" key="false" length="2147483647" name="nama_jurusan" nullable="true" pattern="" precision="0" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="fakultas" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
       <column comment="" key="false" length="-1" name="kode_anggota" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="tahun_ajaran" nullable="true" pattern="" precision="-1" sourceType="ascii" type="id_String" originalLength="-1" usefulColumn="true"/>
+      <column comment="" key="false" length="-1" name="semester" nullable="true" pattern="" precision="-1" sourceType="int" type="id_Integer" originalLength="-1" usefulColumn="true"/>
     </metadata>
   </node>
   <node componentName="tCassandraConnection" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="96" posY="128">
@@ -476,6 +486,12 @@
       <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="semester"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="tahun_ajaran"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row4" show="false"/>
@@ -486,6 +502,12 @@
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
       <elementValue elementRef="TRACE_COLUMN" value="kode_anggota"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="semester"/>
+      <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
+      <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
+      <elementValue elementRef="TRACE_COLUMN" value="tahun_ajaran"/>
       <elementValue elementRef="TRACE_COLUMN_CHECKED" value="true"/>
       <elementValue elementRef="TRACE_COLUMN_CONDITION" value=""/>
     </elementParameter>

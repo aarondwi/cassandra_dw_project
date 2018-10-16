@@ -1102,12 +1102,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 			return this.terbayar;
 		}
 
-		public int tahun;
-
-		public int getTahun() {
-			return this.tahun;
-		}
-
 		public String unique_id;
 
 		public String getUnique_id() {
@@ -1118,6 +1112,18 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 		public String getKode_anggota() {
 			return this.kode_anggota;
+		}
+
+		public String tahun_ajaran;
+
+		public String getTahun_ajaran() {
+			return this.tahun_ajaran;
+		}
+
+		public Integer semester;
+
+		public Integer getSemester() {
+			return this.semester;
 		}
 
 		public String kode_buku;
@@ -1285,11 +1291,13 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 						this.terbayar = dis.readDouble();
 					}
 
-					this.tahun = dis.readInt();
-
 					this.unique_id = readString(dis);
 
 					this.kode_anggota = readString(dis);
+
+					this.tahun_ajaran = readString(dis);
+
+					this.semester = readInteger(dis);
 
 					this.kode_buku = readString(dis);
 
@@ -1355,10 +1363,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 					dos.writeDouble(this.terbayar);
 				}
 
-				// int
-
-				dos.writeInt(this.tahun);
-
 				// String
 
 				writeString(this.unique_id, dos);
@@ -1366,6 +1370,14 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				// String
 
 				writeString(this.kode_anggota, dos);
+
+				// String
+
+				writeString(this.tahun_ajaran, dos);
+
+				// Integer
+
+				writeInteger(this.semester, dos);
 
 				// String
 
@@ -1420,9 +1432,10 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 			sb.append(",tgl_kembali=" + String.valueOf(tgl_kembali));
 			sb.append(",denda=" + String.valueOf(denda));
 			sb.append(",terbayar=" + String.valueOf(terbayar));
-			sb.append(",tahun=" + String.valueOf(tahun));
 			sb.append(",unique_id=" + unique_id);
 			sb.append(",kode_anggota=" + kode_anggota);
+			sb.append(",tahun_ajaran=" + tahun_ajaran);
+			sb.append(",semester=" + String.valueOf(semester));
 			sb.append(",kode_buku=" + kode_buku);
 			sb.append(",kode_judul=" + String.valueOf(kode_judul));
 			sb.append(",judul=" + judul);
@@ -1530,12 +1543,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 			return this.Terbayar;
 		}
 
-		public Integer tahun;
-
-		public Integer getTahun() {
-			return this.tahun;
-		}
-
 		public String unique_id;
 
 		public String getUnique_id() {
@@ -1546,6 +1553,18 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 		public String getKode_anggota() {
 			return this.kode_anggota;
+		}
+
+		public String tahun_ajaran;
+
+		public String getTahun_ajaran() {
+			return this.tahun_ajaran;
+		}
+
+		public Integer semester;
+
+		public Integer getSemester() {
+			return this.semester;
 		}
 
 		private Integer readInteger(ObjectInputStream dis) throws IOException {
@@ -1665,11 +1684,13 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 						this.Terbayar = dis.readDouble();
 					}
 
-					this.tahun = readInteger(dis);
-
 					this.unique_id = readString(dis);
 
 					this.kode_anggota = readString(dis);
+
+					this.tahun_ajaran = readString(dis);
+
+					this.semester = readInteger(dis);
 
 				} catch (IOException e) {
 					throw new RuntimeException(e);
@@ -1729,10 +1750,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 					dos.writeDouble(this.Terbayar);
 				}
 
-				// Integer
-
-				writeInteger(this.tahun, dos);
-
 				// String
 
 				writeString(this.unique_id, dos);
@@ -1740,6 +1757,14 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				// String
 
 				writeString(this.kode_anggota, dos);
+
+				// String
+
+				writeString(this.tahun_ajaran, dos);
+
+				// Integer
+
+				writeInteger(this.semester, dos);
 
 			} catch (IOException e) {
 				throw new RuntimeException(e);
@@ -1761,9 +1786,10 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 			sb.append(",fckd_operator=" + fckd_operator);
 			sb.append(",Denda=" + String.valueOf(Denda));
 			sb.append(",Terbayar=" + String.valueOf(Terbayar));
-			sb.append(",tahun=" + String.valueOf(tahun));
 			sb.append(",unique_id=" + unique_id);
 			sb.append(",kode_anggota=" + kode_anggota);
+			sb.append(",tahun_ajaran=" + tahun_ajaran);
+			sb.append(",semester=" + String.valueOf(semester));
 			sb.append("]");
 
 			return sb.toString();
@@ -2417,7 +2443,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								+ "."
 								+ StringHandling
 										.DQUOTE("cf_transaksi_jurusan_kategori")
-								+ " (\"id_transaksi\",\"tgl_pinjam\",\"tgl_batas\",\"tgl_kembali\",denda,terbayar,\"kode_buku\",\"kode_judul\",\"status_sekarang\",judul,\"nama_jurusan\",fakultas,\"nama_kategori\",\"nama_koleksi\",tahun,\"unique_id\",\"kode_anggota\") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+								+ " (\"id_transaksi\",\"tgl_pinjam\",\"tgl_batas\",\"tgl_kembali\",denda,terbayar,\"kode_buku\",\"kode_judul\",\"status_sekarang\",judul,\"nama_jurusan\",fakultas,\"kelompok_kategori\",\"nama_koleksi\",\"unique_id\",\"kode_anggota\",\"tahun_ajaran\",semester) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				com.datastax.driver.core.BoundStatement boundStmt_tCassandraOutput_1 = null;
 
 				java.util.List<String> columns_tCassandraOutput_1 = new java.util.ArrayList<String>();
@@ -2450,11 +2476,13 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 				columns_tCassandraOutput_1.add("nama_koleksi");
 
-				columns_tCassandraOutput_1.add("tahun");
-
 				columns_tCassandraOutput_1.add("unique_id");
 
 				columns_tCassandraOutput_1.add("kode_anggota");
+
+				columns_tCassandraOutput_1.add("tahun_ajaran");
+
+				columns_tCassandraOutput_1.add("semester");
 
 				org.talend.bigdata.cassandra.BatchExecutor cassandraBatchExec_tCassandraOutput_1 = new org.talend.bigdata.cassandra.BatchExecutor(
 						connection_tCassandraOutput_1,
@@ -2756,11 +2784,15 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								.computeDate(row1.fdtgl_batas);
 						row6.fdtgl_kembali = data_checker
 								.computeDate(row1.fdtgl_kembali);
-						row6.tahun = data_checker
-								.computeYear(row1.fdtgl_pinjam);
+						// row6.tahun=data_checker.computeYear(row1.fdtgl_pinjam);
 
 						row6.unique_id = UUID.randomUUID().toString();
 						row6.kode_anggota = row1.fckd_induk;
+
+						row6.tahun_ajaran = data_checker
+								.computeTahunAjaran(row1.fdtgl_pinjam);
+						row6.semester = data_checker
+								.computeSemester(row1.fdtgl_pinjam);
 						nb_line_tJavaRow_1++;
 
 						tos_count_tJavaRow_1++;
@@ -3092,9 +3124,10 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 							out1_tmp.tgl_kembali = row6.fdtgl_kembali;
 							out1_tmp.denda = row6.Denda;
 							out1_tmp.terbayar = row6.Terbayar;
-							out1_tmp.tahun = row6.tahun;
 							out1_tmp.unique_id = row6.unique_id;
 							out1_tmp.kode_anggota = row6.kode_anggota;
+							out1_tmp.tahun_ajaran = row6.tahun_ajaran;
+							out1_tmp.semester = row6.semester;
 							out1_tmp.kode_buku = row8.k999a;
 							out1_tmp.kode_judul = row8.knokat;
 							out1_tmp.judul = row10.k245a;
@@ -3238,19 +3271,30 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								boundStmt_tCassandraOutput_1.setString(13,
 										out1.nama_koleksi);
 							}
-							boundStmt_tCassandraOutput_1.setInt(14, out1.tahun);
 							if (out1.unique_id == null) {
-								boundStmt_tCassandraOutput_1.setToNull(15);
+								boundStmt_tCassandraOutput_1.setToNull(14);
 							} else {
-								boundStmt_tCassandraOutput_1.setUUID(15,
+								boundStmt_tCassandraOutput_1.setUUID(14,
 										java.util.UUID
 												.fromString(out1.unique_id));
 							}
 							if (out1.kode_anggota == null) {
+								boundStmt_tCassandraOutput_1.setToNull(15);
+							} else {
+								boundStmt_tCassandraOutput_1.setString(15,
+										out1.kode_anggota);
+							}
+							if (out1.tahun_ajaran == null) {
 								boundStmt_tCassandraOutput_1.setToNull(16);
 							} else {
 								boundStmt_tCassandraOutput_1.setString(16,
-										out1.kode_anggota);
+										out1.tahun_ajaran);
+							}
+							if (out1.semester == null) {
+								boundStmt_tCassandraOutput_1.setToNull(17);
+							} else {
+								boundStmt_tCassandraOutput_1.setInt(17,
+										out1.semester);
 							}
 
 							cassandraBatchExec_tCassandraOutput_1
@@ -6261,7 +6305,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
 
 					}
 				}
@@ -6269,7 +6313,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
 
 					}
 				}
@@ -6382,9 +6426,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 						currentComponent = "tUnite_2";
 
-						// row9
-						// row7
-
 						// row7
 						// row7
 
@@ -6392,6 +6433,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 							runStat.updateStatOnConnection("row7" + iterateId,
 									1, 1);
 						}
+
+						// row9
+						// row7
 
 						// ////////
 
@@ -6566,15 +6610,15 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 					currentComponent = "tUnite_2";
 
+					// row7
+					// row9
+
 					// row9
 					// row9
 
 					if (execStat) {
 						runStat.updateStatOnConnection("row9" + iterateId, 1, 1);
 					}
-
-					// row7
-					// row9
 
 					// ////////
 
@@ -6698,14 +6742,14 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
 					}
 				}
 
@@ -8924,7 +8968,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row14" + iterateId, 0,
+						runStat.updateStatOnConnection("row13" + iterateId, 0,
 								0);
 
 					}
@@ -8933,7 +8977,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row13" + iterateId, 0,
+						runStat.updateStatOnConnection("row14" + iterateId, 0,
 								0);
 
 					}
@@ -9298,9 +9342,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 							currentComponent = "tUnite_3";
 
-							// row14
-							// row13
-
 							// row13
 							// row13
 
@@ -9308,6 +9349,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								runStat.updateStatOnConnection("row13"
 										+ iterateId, 1, 1);
 							}
+
+							// row14
+							// row13
 
 							// ////////
 
@@ -9494,6 +9538,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 					currentComponent = "tUnite_3";
 
+					// row13
+					// row14
+
 					// row14
 					// row14
 
@@ -9501,9 +9548,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 						runStat.updateStatOnConnection("row14" + iterateId, 1,
 								1);
 					}
-
-					// row13
-					// row14
 
 					// ////////
 
@@ -9627,7 +9671,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row14" + iterateId, 2,
+						runStat.updateStatOnConnection("row13" + iterateId, 2,
 								0);
 					}
 				}
@@ -9635,7 +9679,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row13" + iterateId, 2,
+						runStat.updateStatOnConnection("row14" + iterateId, 2,
 								0);
 					}
 				}
@@ -11073,6 +11117,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 293231 characters generated by Talend Open Studio for Big Data on the October
- * 13, 2018 12:55:33 PM ICT
+ * 294376 characters generated by Talend Open Studio for Big Data on the October
+ * 16, 2018 12:36:00 PM ICT
  ************************************************************************************************/

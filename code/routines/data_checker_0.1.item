@@ -17,6 +17,7 @@ public class data_checker {
 	}
 
 	public static Date computeDate(String initial) throws ParseException{
+		//initial expected format => 1/3/2013 12:22
 		SimpleDateFormat dt=new SimpleDateFormat("MM/dd/yyyy");
 		Date hasil=dt.parse("01/01/0001");
 		try{
@@ -103,6 +104,37 @@ public class data_checker {
 		catch(Exception e){
 			hasil=1;
 		}
+		return hasil;
+	}
+	
+	public static Integer computeSemester(String initial){
+		Integer hasil=0;
+		try{
+			//initial expected format => 1/3/2013 12:22
+			hasil=Integer.valueOf((initial.split(" ")[0]).split("/")[0]);
+			if(hasil<=6)hasil=2;
+			else hasil=1;
+		}
+		catch(Exception e){
+			hasil=0;
+		}
+		return hasil;
+	}
+	
+	public static String computeTahunAjaran(String initial){
+		String hasil="None";
+		try{
+			//initial expected format => 1/3/2013 12:22 (MM/dd/yyyy)
+			Integer bulan=Integer.valueOf((initial.split(" ")[0]).split("/")[0]);
+			Integer tahun=Integer.valueOf((initial.split(" ")[0]).split("/")[2]);
+			
+			if(bulan<=6)hasil=String.valueOf(tahun-1)+"/"+String.valueOf(tahun);
+			else hasil=String.valueOf(tahun)+"/"+String.valueOf(tahun+1);
+		}
+		catch(Exception e){
+			hasil="None";
+		}
+		
 		return hasil;
 	}
 }
