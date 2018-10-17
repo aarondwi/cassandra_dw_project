@@ -2,6 +2,7 @@ package routines;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class data_checker {
@@ -17,11 +18,30 @@ public class data_checker {
 	}
 
 	public static Date computeDate(String initial) throws ParseException{
-		//initial expected format => 1/3/2013 12:22
+		//initial expected format => 1/3/2013 12:22 / 7/23/2013 0:00
 		SimpleDateFormat dt=new SimpleDateFormat("MM/dd/yyyy");
 		Date hasil=dt.parse("01/01/0001");
 		try{
 			hasil=dt.parse(initial.split(" ")[0]);
+		}
+		catch(Exception e){
+			hasil=dt.parse("01/01/0001");
+		}
+		return hasil;
+	}
+	
+	public static Date computeDateCassandra(String initial) throws ParseException{
+		//initial expected format => 1/3/2013 12:22 / 7/23/2013 0:00
+		//in tcassandraoutput component, for some reason it always reduce the day by 1
+		//so we need to add 1 day to it
+		SimpleDateFormat dt=new SimpleDateFormat("MM/dd/yyyy");
+		Date hasil=dt.parse("01/01/0001");
+		Calendar c=Calendar.getInstance();
+		try{
+			//hasil=dt.parse(initial.split(" ")[0]);
+			c.setTime(dt.parse(initial.split(" ")[0]));
+			c.add(Calendar.DATE,1);
+			hasil=c.getTime();
 		}
 		catch(Exception e){
 			hasil=dt.parse("01/01/0001");

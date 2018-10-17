@@ -2490,7 +2490,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 						StringHandling.DQUOTE("cf_transaksi_jurusan_kategori"),
 						columns_tCassandraOutput_1,
 						org.talend.bigdata.cassandra.BatchGroupingKey
-								.fromString("PARTITION"), 1000, true, 5);
+								.fromString("PARTITION"), 100, false, 5);
 
 				/**
 				 * [tCassandraOutput_1 begin ] stop
@@ -2779,11 +2779,11 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 						row6.fckd_induk = data_checker
 								.computeJurusan(row1.fckd_induk);
 						row6.fdtgl_pinjam = data_checker
-								.computeDate(row1.fdtgl_pinjam);
+								.computeDateCassandra(row1.fdtgl_pinjam);
 						row6.fdtgl_batas = data_checker
-								.computeDate(row1.fdtgl_batas);
+								.computeDateCassandra(row1.fdtgl_batas);
 						row6.fdtgl_kembali = data_checker
-								.computeDate(row1.fdtgl_kembali);
+								.computeDateCassandra(row1.fdtgl_kembali);
 						// row6.tahun=data_checker.computeYear(row1.fdtgl_pinjam);
 
 						row6.unique_id = UUID.randomUUID().toString();
@@ -4396,8 +4396,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								.computeKoleksi(row4.fckd_jnskol);
 						row8.status = data_checker.computeStatus(row4.status);
 						row8.fdtgl_input = data_checker
-								.computeDate(row4.fdtgl_input);
-						row8.tgl_dtg = data_checker.computeDate(row4.tgl_dtg);
+								.computeDateCassandra(row4.fdtgl_input);
+						row8.tgl_dtg = data_checker
+								.computeDateCassandra(row4.tgl_dtg);
 
 						nb_line_tJavaRow_2++;
 
@@ -6305,7 +6306,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
 
 					}
 				}
@@ -6313,7 +6314,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
 
 					}
 				}
@@ -6426,6 +6427,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 						currentComponent = "tUnite_2";
 
+						// row9
+						// row7
+
 						// row7
 						// row7
 
@@ -6433,9 +6437,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 							runStat.updateStatOnConnection("row7" + iterateId,
 									1, 1);
 						}
-
-						// row9
-						// row7
 
 						// ////////
 
@@ -6610,15 +6611,15 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 					currentComponent = "tUnite_2";
 
-					// row7
-					// row9
-
 					// row9
 					// row9
 
 					if (execStat) {
 						runStat.updateStatOnConnection("row9" + iterateId, 1, 1);
 					}
+
+					// row7
+					// row9
 
 					// ////////
 
@@ -6742,14 +6743,14 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
 					}
 				}
 
@@ -7481,7 +7482,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row2" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row3" + iterateId, 0, 0);
 
 					}
 				}
@@ -7489,7 +7490,7 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row3" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row2" + iterateId, 0, 0);
 
 					}
 				}
@@ -7871,6 +7872,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 							currentComponent = "tUnite_1";
 
+							// row3
+							// row2
+
 							// row2
 							// row2
 
@@ -7878,9 +7882,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 								runStat.updateStatOnConnection("row2"
 										+ iterateId, 1, 1);
 							}
-
-							// row3
-							// row2
 
 							// ////////
 
@@ -8076,9 +8077,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 
 						currentComponent = "tUnite_1";
 
-						// row2
-						// row3
-
 						// row3
 						// row3
 
@@ -8086,6 +8084,9 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 							runStat.updateStatOnConnection("row3" + iterateId,
 									1, 1);
 						}
+
+						// row2
+						// row3
 
 						// ////////
 
@@ -8215,14 +8216,14 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row2" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row3" + iterateId, 2, 0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row3" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row2" + iterateId, 2, 0);
 					}
 				}
 
@@ -11117,6 +11118,6 @@ public class cf_transaksi_jurusan_kategori implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 294376 characters generated by Talend Open Studio for Big Data on the October
- * 16, 2018 12:36:00 PM ICT
+ * 294421 characters generated by Talend Open Studio for Big Data on the October
+ * 17, 2018 8:43:22 PM ICT
  ************************************************************************************************/
