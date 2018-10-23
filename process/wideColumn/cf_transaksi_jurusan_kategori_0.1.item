@@ -861,7 +861,7 @@
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tCassandraConnection_1" show="false"/>
     <elementParameter field="CLOSED_LIST" name="DB_VERSION" value="CASSANDRA_3_0"/>
     <elementParameter field="CLOSED_LIST" name="API_TYPE" value="DATASTAX" show="false"/>
-    <elementParameter field="TEXT" name="HOST" value="&quot;&quot;"/>
+    <elementParameter field="TEXT" name="HOST" value="&quot;192.168.38.14&quot;"/>
     <elementParameter field="TEXT" name="PORT" value="&quot;9042&quot;"/>
     <elementParameter field="CHECK" name="REQUIRED_AUTHENTICATION" value="true"/>
     <elementParameter field="TEXT" name="USERNAME" value="&quot;cassandra&quot;"/>

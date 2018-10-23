@@ -20,12 +20,12 @@ public class data_checker {
 	public static Date computeDate(String initial) throws ParseException{
 		//initial expected format => 1/3/2013 12:22 / 7/23/2013 0:00
 		SimpleDateFormat dt=new SimpleDateFormat("MM/dd/yyyy");
-		Date hasil=dt.parse("01/01/0001");
+		Date hasil=dt.parse("01/01/1900");
 		try{
 			hasil=dt.parse(initial.split(" ")[0]);
 		}
 		catch(Exception e){
-			hasil=dt.parse("01/01/0001");
+			hasil=dt.parse("01/01/1900");
 		}
 		return hasil;
 	}
@@ -35,7 +35,7 @@ public class data_checker {
 		//in tcassandraoutput component, for some reason it always reduce the day by 1
 		//so we need to add 1 day to it
 		SimpleDateFormat dt=new SimpleDateFormat("MM/dd/yyyy");
-		Date hasil=dt.parse("01/01/0001");
+		Date hasil=dt.parse("01/01/1900");
 		Calendar c=Calendar.getInstance();
 		try{
 			//hasil=dt.parse(initial.split(" ")[0]);
@@ -44,7 +44,8 @@ public class data_checker {
 			hasil=c.getTime();
 		}
 		catch(Exception e){
-			hasil=dt.parse("01/01/0001");
+			hasil=dt.parse("01/01/1900");
+			//for some reason, below 1970-01-01 won't get reduce by 1 again
 		}
 		return hasil;
 	}
@@ -115,10 +116,23 @@ public class data_checker {
 	}
 
 	public static Integer computeYear(String initial){
-		Integer hasil=1;
+		Integer hasil=1900;
 		try{
 			hasil=Integer.valueOf(
 				(initial.split(" ")[0]).split("/")[2]
+			);
+		}
+		catch(Exception e){
+			hasil=1900;
+		}
+		return hasil;
+	}
+	
+	public static Integer computeMonth(String initial){
+		Integer hasil=1;
+		try{
+			hasil=Integer.valueOf(
+				(initial.split(" ")[0]).split("/")[0]
 			);
 		}
 		catch(Exception e){

@@ -744,7 +744,7 @@ public class cf_buku implements TalendJob {
 
 				com.datastax.driver.core.Cluster cluster_tCassandraConnection_1 = com.datastax.driver.core.Cluster
 						.builder()
-						.addContactPoints("".split(","))
+						.addContactPoints("192.168.38.14".split(","))
 						.withPort(Integer.valueOf("9042"))
 
 						.withCredentials(
@@ -1077,6 +1077,18 @@ public class cf_buku implements TalendJob {
 			return this.unique_id;
 		}
 
+		public Integer tahun;
+
+		public Integer getTahun() {
+			return this.tahun;
+		}
+
+		public Integer bulan;
+
+		public Integer getBulan() {
+			return this.bulan;
+		}
+
 		public String judul;
 
 		public String getJudul() {
@@ -1209,6 +1221,10 @@ public class cf_buku implements TalendJob {
 
 					this.unique_id = readString(dis);
 
+					this.tahun = readInteger(dis);
+
+					this.bulan = readInteger(dis);
+
 					this.judul = readString(dis);
 
 					this.jenis_terbitan = readString(dis);
@@ -1253,6 +1269,14 @@ public class cf_buku implements TalendJob {
 
 				writeString(this.unique_id, dos);
 
+				// Integer
+
+				writeInteger(this.tahun, dos);
+
+				// Integer
+
+				writeInteger(this.bulan, dos);
+
 				// String
 
 				writeString(this.judul, dos);
@@ -1293,6 +1317,8 @@ public class cf_buku implements TalendJob {
 			sb.append(",tanggal_input=" + String.valueOf(tanggal_input));
 			sb.append(",tanggal_datang=" + String.valueOf(tanggal_datang));
 			sb.append(",unique_id=" + unique_id);
+			sb.append(",tahun=" + String.valueOf(tahun));
+			sb.append(",bulan=" + String.valueOf(bulan));
 			sb.append(",judul=" + judul);
 			sb.append(",jenis_terbitan=" + jenis_terbitan);
 			sb.append(",nama_koleksi=" + nama_koleksi);
@@ -1389,6 +1415,18 @@ public class cf_buku implements TalendJob {
 
 		public String getUnique_id() {
 			return this.unique_id;
+		}
+
+		public Integer tahun;
+
+		public Integer getTahun() {
+			return this.tahun;
+		}
+
+		public Integer bulan;
+
+		public Integer getBulan() {
+			return this.bulan;
 		}
 
 		private String readString(ObjectInputStream dis) throws IOException {
@@ -1493,6 +1531,10 @@ public class cf_buku implements TalendJob {
 
 					this.unique_id = readString(dis);
 
+					this.tahun = readInteger(dis);
+
+					this.bulan = readInteger(dis);
+
 				} catch (IOException e) {
 					throw new RuntimeException(e);
 
@@ -1537,6 +1579,14 @@ public class cf_buku implements TalendJob {
 
 				writeString(this.unique_id, dos);
 
+				// Integer
+
+				writeInteger(this.tahun, dos);
+
+				// Integer
+
+				writeInteger(this.bulan, dos);
+
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
@@ -1556,6 +1606,8 @@ public class cf_buku implements TalendJob {
 			sb.append(",status=" + status);
 			sb.append(",tgl_dtg=" + String.valueOf(tgl_dtg));
 			sb.append(",unique_id=" + unique_id);
+			sb.append(",tahun=" + String.valueOf(tahun));
+			sb.append(",bulan=" + String.valueOf(bulan));
 			sb.append("]");
 
 			return sb.toString();
@@ -2110,7 +2162,7 @@ public class cf_buku implements TalendJob {
 								+ StringHandling.DQUOTE("skripsi")
 								+ "."
 								+ StringHandling.DQUOTE("cf_buku")
-								+ " (\"kode_buku\",\"kode_judul\",\"tanggal_input\",\"tanggal_datang\",\"unique_id\",judul,\"jenis_terbitan\",\"nama_koleksi\",\"kelompok_kategori\",\"status_sekarang\",penerbit) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+								+ " (\"kode_buku\",\"kode_judul\",\"tanggal_input\",\"tanggal_datang\",\"unique_id\",judul,\"jenis_terbitan\",\"nama_koleksi\",\"kelompok_kategori\",\"status_sekarang\",penerbit,tahun,bulan) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				com.datastax.driver.core.BoundStatement boundStmt_tCassandraOutput_1 = null;
 
 				java.util.List<String> columns_tCassandraOutput_1 = new java.util.ArrayList<String>();
@@ -2136,6 +2188,10 @@ public class cf_buku implements TalendJob {
 				columns_tCassandraOutput_1.add("status");
 
 				columns_tCassandraOutput_1.add("k260b");
+
+				columns_tCassandraOutput_1.add("tahun");
+
+				columns_tCassandraOutput_1.add("bulan");
 
 				org.talend.bigdata.cassandra.BatchExecutor cassandraBatchExec_tCassandraOutput_1 = new org.talend.bigdata.cassandra.BatchExecutor(
 						connection_tCassandraOutput_1,
@@ -2419,6 +2475,8 @@ public class cf_buku implements TalendJob {
 								.computeDateCassandra(row1.tgl_dtg);
 
 						row2.unique_id = UUID.randomUUID().toString();
+						row2.tahun = data_checker.computeYear(row1.tgl_dtg);
+						row2.bulan = data_checker.computeMonth(row1.tgl_dtg);
 
 						nb_line_tJavaRow_1++;
 
@@ -2750,6 +2808,8 @@ public class cf_buku implements TalendJob {
 							load_tmp.tanggal_input = row2.fdtgl_input;
 							load_tmp.tanggal_datang = row2.tgl_dtg;
 							load_tmp.unique_id = row2.unique_id;
+							load_tmp.tahun = row2.tahun;
+							load_tmp.bulan = row2.bulan;
 							load_tmp.judul = row3.k245a;
 							load_tmp.jenis_terbitan = row6.fcket_jnstbt;
 							load_tmp.nama_koleksi = row10.k099l;
@@ -2872,6 +2932,18 @@ public class cf_buku implements TalendJob {
 							} else {
 								boundStmt_tCassandraOutput_1.setString(10,
 										load.k260b);
+							}
+							if (load.tahun == null) {
+								boundStmt_tCassandraOutput_1.setToNull(11);
+							} else {
+								boundStmt_tCassandraOutput_1.setInt(11,
+										load.tahun);
+							}
+							if (load.bulan == null) {
+								boundStmt_tCassandraOutput_1.setToNull(12);
+							} else {
+								boundStmt_tCassandraOutput_1.setInt(12,
+										load.bulan);
 							}
 
 							cassandraBatchExec_tCassandraOutput_1
@@ -6500,7 +6572,7 @@ public class cf_buku implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
 
 					}
 				}
@@ -6508,7 +6580,7 @@ public class cf_buku implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null) {
 
-						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
 
 					}
 				}
@@ -6621,6 +6693,9 @@ public class cf_buku implements TalendJob {
 
 						currentComponent = "tUnite_2";
 
+						// row9
+						// row7
+
 						// row7
 						// row7
 
@@ -6628,9 +6703,6 @@ public class cf_buku implements TalendJob {
 							runStat.updateStatOnConnection("row7" + iterateId,
 									1, 1);
 						}
-
-						// row9
-						// row7
 
 						// ////////
 
@@ -6805,15 +6877,15 @@ public class cf_buku implements TalendJob {
 
 					currentComponent = "tUnite_2";
 
-					// row7
-					// row9
-
 					// row9
 					// row9
 
 					if (execStat) {
 						runStat.updateStatOnConnection("row9" + iterateId, 1, 1);
 					}
+
+					// row7
+					// row9
 
 					// ////////
 
@@ -6937,14 +7009,14 @@ public class cf_buku implements TalendJob {
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
 					}
 				}
 
 				if (execStat) {
 					if (resourceMap.get("inIterateVComp") == null
 							|| !((Boolean) resourceMap.get("inIterateVComp"))) {
-						runStat.updateStatOnConnection("row9" + iterateId, 2, 0);
+						runStat.updateStatOnConnection("row7" + iterateId, 2, 0);
 					}
 				}
 
@@ -9826,6 +9898,6 @@ public class cf_buku implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 256526 characters generated by Talend Open Studio for Big Data on the October
- * 17, 2018 8:25:10 PM ICT
+ * 258154 characters generated by Talend Open Studio for Big Data on the October
+ * 23, 2018 1:54:32 PM ICT
  ************************************************************************************************/
